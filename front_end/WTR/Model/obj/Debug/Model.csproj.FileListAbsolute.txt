@@ -1,0 +1,14 @@
+E:\ThucTap\Web-Ticket-Reservation\WTR\Model\bin\Debug\Model.dll.config
+E:\ThucTap\Web-Ticket-Reservation\WTR\Model\bin\Debug\Model.dll
+E:\ThucTap\Web-Ticket-Reservation\WTR\Model\bin\Debug\Model.pdb
+E:\ThucTap\Web-Ticket-Reservation\WTR\Model\bin\Debug\EntityFramework.dll
+E:\ThucTap\Web-Ticket-Reservation\WTR\Model\bin\Debug\EntityFramework.SqlServer.dll
+E:\ThucTap\Web-Ticket-Reservation\WTR\Model\bin\Debug\PagedList.dll
+E:\ThucTap\Web-Ticket-Reservation\WTR\Model\bin\Debug\PagedList.Mvc.dll
+E:\ThucTap\Web-Ticket-Reservation\WTR\Model\bin\Debug\EntityFramework.xml
+E:\ThucTap\Web-Ticket-Reservation\WTR\Model\bin\Debug\EntityFramework.SqlServer.xml
+E:\ThucTap\Web-Ticket-Reservation\WTR\Model\bin\Debug\PagedList.xml
+E:\ThucTap\Web-Ticket-Reservation\WTR\Model\bin\Debug\PagedList.Mvc.xml
+E:\ThucTap\Web-Ticket-Reservation\WTR\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+E:\ThucTap\Web-Ticket-Reservation\WTR\Model\obj\Debug\Model.dll
+E:\ThucTap\Web-Ticket-Reservation\WTR\Model\obj\Debug\Model.pdb
