@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Nhà xe Thành Đạt</title>
+	<!-- css -->
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="assets/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/dist/fontawesome/css/all.min.css">
+	<!-- js -->
+	<script type="text/javascript" src="assets/js/jquery.js"></script>
+	<script type="text/javascript" src="assets/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="assets/dist/fontawesome/js/all.min.js"></script>
+</head>
+<body id="home">
+	<section>
+		<!-- Navigation -->
+		<nav class="navbar navbar-expand-xl navbar-dark bg-header">
+			<div class="container">
+			    <a class="navbar-brand" href="#"><img src="assets/images/logo.png" alt="logo" width="90"></a>
+			    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContentXL" aria-controls="navbarSupportedContentXL" aria-expanded="false" aria-label="Toggle navigation">
+			        <span class="navbar-toggler-icon"></span>
+			    </button>
+
+			    <div class="collapse navbar-collapse" id="navbarSupportedContentXL">
+			        <ul class="navbar-nav mr-auto">
+			            <li class="nav-item active">
+			                <a class="nav-link" href="#">Lịch trình <span class="sr-only">(current)</span></a>
+			            </li>
+			            <li class="nav-item">
+			                <a class="nav-link" href="#">Khuyến mãi</a>
+			            </li>
+			            <li class="nav-item">
+			                <a class="nav-link" href="#">Tin tức</a>
+			            </li>
+			            <li class="nav-item">
+			                <a class="nav-link disabled" href="#">Disabled</a>
+			            </li>
+			        </ul>
+			        <form class="form-inline my-2 my-lg-0">
+			            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+			            <button class="btn btn-submit my-2 my-sm-0" type="submit">Search</button>
+			        </form>
+			    </div>
+			</div>
+		</nav><!-- end nav -->
+		<div class="container">
+			<div>
+				<div class="row" id="body-top">
+					<div class="col-12 col-md-5">
+						<!-- nav tabs -->
+						<div class="row v-tabs">
+							<div role="presentation" class="col-6 active"><a href="#booking" class="" aria-controls="home" role="tab" data-toggle="tab">MUA VÉ XE TRỰC TUYẾN</a></div>
+							<div class="col-6"><a href="#">HƯỚNG DẪN ĐẶT VÉ</a></div>
+						</div>
+						<!-- end nav tabs -->
+						<!-- tabs panes -->
+							<div class="tab-contents">
+								<div class="tablepanel" class="tab-pane active" id="booking">
+									<form class="form">
+										<div class="row">
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label>Điểm khởi hành</label>
+													<div class="controls">
+						                     			<i class="fas fa-bus icon"></i>
+
+						                                <select name="idOrigin" id="idOrigin" class="form-control selectpicker">
+						                                    <option value="">Chọn điểm khởi hành</option>
+						                                </select>
+						                            </div>
+
+												</div>
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+						                            <label for="">Điểm đến</label>
+						                            <div class="controls">
+						                                <i class="fa fa-bus icon"></i>
+						                                
+						                                <select name="idDest" id="idDest" class="form-control  selectpicker">
+						                                    <option value="">Chọn điểm đến</option>
+						                                </select>
+						                            </div>
+						                        </div>
+
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+						                            <label for="">Ngày khởi hành</label>
+						                            <div class="controls">
+						                                <i class="far fa-clock icon"></i>
+						                                <input type="text" name="dDate" placeholder=" dd/mm/yyyy" class="form-control dDate date-readonly" value="" readonly/>
+						                                <small><em>Định dạng: dd-mm-yyyy</em></small>
+						                            </div>
+						                        </div>
+
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+						                            <label for="">Số lượng vé</label>
+						                            <div class="controls">
+						                                <i class="fas fa-ticket-alt icon"></i>
+						                                
+						                                <input type="number" name="numOfTicket" placeholder="1" value="1" class="form-control" min="1" max="10" />
+						                            </div>
+						                        </div>
+
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6 col-12">
+												 <button type="button" class="btn btn-primary btn-block btn-flat btn-booking">Mua vé</button>
+
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						<!-- end tabs panes -->
+					</div>
+					<div class="col-12 col-md-7">
+
+					</div>
+				</div>
+			</div>
+			<div>
+				<div id="body-contents">
+					<div id="steps">
+						<ul class="list-step">
+							<li class="active">
+								Chọn tuyến
+							</li>
+							<li>
+								Chọn ghế
+							</li>
+							<li>
+								Thông tin khách hàng
+							</li>
+							<li>
+								Thanh toán
+							</li>
+						</ul>
+					</div>
+					<div id="content-steps">
+						<div class="row">
+							<div class="col-12 col-md-5">
+								
+							</div>
+							<div class="col-12 col-md-7">
+								<div class="panel">
+									<div class="row">
+										<div class="col-6">
+											Số lượng vé: <span>Chưa chọn ghế</span><span></span>
+										</div>
+										<div class="col-6 text-right">
+											Tổng tiền: <span></span>
+										</div>
+									</div>
+									<div>
+										<table class="table table-borderless grid-seat">
+											  <thead>
+											    <tr>
+											      <th scope="col" colspan="5"><p class="text-center text-upercase">Sơ đồ ghế</p></th>
+											    </tr>
+											  </thead>
+											  <tbody>
+											    <tr>
+											      <td>
+											      	<div class="seat chosed-seat">1</div>
+											      </td>
+											      <td><div class="seat selected">2</div></td>
+											      <td><div class="seat">3</div></td>
+											      <td><div class="seat">4</div></td>
+											    </tr>
+											    <tr>
+											       <td>
+											      	<div class="seat">5</div>
+											      </td>
+											      <td><div class="seat">6</div></td>
+											      <td><div class="seat">7</div></td>
+											      <td><div class="seat">8</div></td>
+											    </tr>
+											    <tr>
+											       <td>
+											      	<div class="seat">9</div>
+											      </td>
+											      <td><div class="seat">10</div></td>
+											      <td><div class="seat">11</div></td>
+											      <td><div class="seat">12</div></td>
+											    </tr>
+											    <tr>
+											       <td>
+											      	<div class="seat">9</div>
+											      </td>
+											      <td><div class="seat">10</div></td>
+											      <td><div class="seat">11</div></td>
+											      <td><div class="seat">12</div></td>
+											    </tr>
+											    <tr>
+											       <td>
+											      	<div class="seat">9</div>
+											      </td>
+											      <td><div class="seat">10</div></td>
+											      <td><div class="seat">11</div></td>
+											      <td><div class="seat">12</div></td>
+											    </tr>
+											    <tr>
+											       <td>
+											      	<div class="seat">13</div>
+											      </td>
+											      <td><div class="seat">14</div></td>
+											      <td><div class="seat">15</div></td>
+											      <td><div class="seat">16</div></td>
+											    </tr>
+											    <tr>
+											       <td>
+											      	<div class="seat">17</div>
+											      </td>
+											      <td><div class="seat">18</div></td>
+											      <td><div class="seat">19</div></td>
+											      <td><div class="seat">20</div></td>
+											    </tr>
+											    <tr>
+											       <td>
+											      	<div class="seat">21</div>
+											      </td>
+											      <td><div class="seat">22</div></td>
+											      <td><div class="seat">23</div></td>
+											      <td><div class="seat">24</div></td>
+											    </tr>
+											  </tbody>
+											</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+		
+</body>
+</html>
