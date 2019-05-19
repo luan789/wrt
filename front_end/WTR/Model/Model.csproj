@@ -59,10 +59,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dao\BusDao.cs" />
+    <Compile Include="Dao\DriverDao.cs" />
     <Compile Include="Dao\EmployerDao.cs" />
     <Compile Include="Dao\PassengerDao.cs" />
-    <Compile Include="EF\DbContentWTR.cs" />
-    <Compile Include="EF\sysdiagrams.cs" />
+    <Compile Include="Dao\ScheduleDao.cs" />
+    <Compile Include="Dao\Station.cs" />
+    <Compile Include="Dao\TickerDao.cs" />
+    <Compile Include="EF\WRTdbContext.cs" />
     <Compile Include="EF\wrt_i_bus.cs" />
     <Compile Include="EF\wrt_i_driver.cs" />
     <Compile Include="EF\wrt_i_employer.cs" />

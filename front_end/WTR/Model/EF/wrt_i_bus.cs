@@ -18,7 +18,7 @@ namespace Model.EF
         [StringLength(15)]
         public string id_bus { get; set; }
 
-        [StringLength(15)]
+        [StringLength(50)]
         public string type { get; set; }
 
         [StringLength(50)]

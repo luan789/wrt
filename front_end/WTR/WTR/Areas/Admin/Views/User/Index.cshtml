@@ -1,8 +1,9 @@
 ﻿
 @{
-    Layout = null;
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
 }
-
+@section header{
 <!DOCTYPE html>
 <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js'></script>
@@ -30,8 +31,8 @@
         color: black;
         border: 2px solid #555555;
         position: absolute;
-        right: 5px;
-        top: 0px;
+        right: 13px;
+        top: 100px;
     }
 
         .buttonAdd:hover {
@@ -44,8 +45,8 @@
         color: black;
         border: 2px solid #555555;
         position: absolute;
-        right: 5px;
-        top: 35px;
+        right: 13px;
+        top: 140px;
     }
 
         .buttonEdt:hover {
@@ -80,6 +81,7 @@
             color: white;
         }
 </style>
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -87,102 +89,58 @@
 </head>
 <body>
     <div id="Ex">
-
         <div>
-            <input v-model="User.name" />
-            <input v-model="User.pass" />
-            <input v-model="User.e_mail" />
-            <input v-model="User.phone" /><br />
+            <input v-model="User.name" style="border:solid 1px; padding-bottom: 5px; font-size:20px" />
+            <input v-model="User.pass" style="border:solid 1px; padding-bottom: 5px; font-size:20px" /><br />
+            <input v-model="User.e_mail" style="border:solid 1px; padding-bottom: 5px; font-size:20px"/>
+            <input v-model="User.phone"style="border:solid 1px; padding-bottom: 5px; font-size:20px" /><br />
+            <input v-model="User.flag"style="border:solid 1px; padding-bottom: 5px; font-size:20px" />
             <button class="button buttonAdd" v-on:click="createUser">Thêm</button>
             <button class="button buttonEdt" v-on:click="updateUser">Cập nhật</button>
         </div>
-        @*<v-app id="inspire">
-                <v-card>
-                    <v-card-title>
-                        Quản lý User
-                        <v-spacer></v-spacer>
-                        <v-text-field append-icon="search" label="Search" single-line hidden-details v-model="search"></v-text-field>
-                    </v-card-title>
-                    <v-data-table :headers="headers" :item="items" :search="search">
-                        <template slot="item" slot-scope="props">
-                            <td class="text-xs-right">{{ props.item.id }}</td>
-                            <td class="text-xs-right">{{ props.item.name }}</td>
-                            <td class="text-xs-right">{{ props.item.title }}</td>
-                            <td class="text-xs-right">{{ props.item.url }}</td>
-                        </template>
-                        <v-alert slot="no-results" value="true" color="error" icon="warning">
-                            Your search for "{{ search }}" found no results.
-                        </v-alert>
-                    </v-data-table>
-                </v-card>
-            </v-app>*@
-
-
         <br />
         <br />
-
         <h2 style="text-align:center">Danh sách User</h2>
-        <table style="width:100%" border="1">
-            <tr>
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size:20px">
+            <tr style="text-align:center">
                 <th>ID</th>
                 <th>Name</th>
                 <th>Password</th>
                 <th>Email</th>
+                <th>Phone</th>
                 <th>Flag</th>
                 <th>##</th>
             </tr>
-            <tr v-for="(item,index) in items ">
+            <tr v-for="(item,index) in items " style="text-align:center">
                 <td>{{item.id_passenger}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.pass}}</td>
                 <td>{{item.e_mail}}</td>
+                <td>{{item.phone}}</td>
                 <td>{{item.flag}}</td>
                 <td>
                     <button class="button buttonDel" v-on:click="deleteUser(item.ID,index)">Xóa</button> ||
                     <button class="button buttonEd" v-on:click="editUser(item,index)">Sửa</button>
                 </td>
             </tr>
-
         </table>
     </div>
 </body>
 </html>
 <script type="text/javascript">
     new Vue({
-        el: '#app',
-        data() {
-            return
-            {
-                info: null;
-            }
-        },
-
-        mounted() {
-            axios
-            .get('http://localhost:54429/User/GetData ')
-            .then(response=>(this.info = response))
-        }
-    })
-    new Vue({
         el: '#Ex',
         data () {
             return {
                 objectIndex: 0,
-                headers: [
-                  { text: 'ID', value: 'id_passenger' },
-                  { text: 'Name', value: 'name' },
-                  { text: 'Password', value: 'pass' },
-                  { text: 'Email', value: 'e_mail' },
-                  { text: 'Phone', value: 'phone' },
-                ],
                 items: [],
                 User: {
-                    id_passenger: "",
+                    id_passenger: "PA000",
                     name: "name",
                     pass: "pass",
                     e_mail: "e_mail",
                     phone: "phone",
-                    flag:"0",
+                    flag: "flag",
                 }
             }
         },
@@ -234,7 +192,7 @@
                    })
             },
             updateUser() {
-                axios.post('http://localhost:54429/Admin/User/Edit', this.User)
+                axios.post('http://localhost:54429/User/Edit', this.User)
                     .then(response => {
                         if (response.data.success) {
                             // this.items = response.data.content;
@@ -248,12 +206,12 @@
             editUser(user, index) {
                 this.objectIndex = index;
                 this.User = {
-                    ID: user.id_passenger,
-                    Name: user.name,
-                    Password: user.pass,
-                    Email: user.e_mail,
-                    Phone: user.phone,
-                    Flag: user.flag,
+                    id_passenger: user.id_passenger,
+                    name: user.name,
+                    pass: user.pass,
+                    e_mail: user.e_mail,
+                    phone: user.phone,
+                    flag: user.flag,
                 };
             },
 
@@ -263,3 +221,4 @@
         }
     })
 </script>
+}

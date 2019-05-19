@@ -24,7 +24,7 @@ namespace Model.EF
         [Column(TypeName = "date")]
         public DateTime? birth { get; set; }
 
-        [StringLength(15)]
+        [StringLength(50)]
         public string phone { get; set; }
 
         [StringLength(50)]

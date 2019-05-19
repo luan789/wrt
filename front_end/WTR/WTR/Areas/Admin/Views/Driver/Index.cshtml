@@ -1,0 +1,243 @@
+﻿
+
+@model PagedList.IPagedList<Model.EF.wrt_i_driver>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+@section header{
+    <!DOCTYPE html>
+<script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js'></script>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons'>
+<script src="//unpkg.com/axios/dist/axios.min.js"></script>
+<style>
+    .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 4px 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+
+    .buttonAdd {
+        background-color: white;
+        color: black;
+        border: 2px solid #555555;
+        position: absolute;
+        right: 13px;
+        top: 100px;
+    }
+
+        .buttonAdd:hover {
+            background-color: #555555;
+            color: white;
+        }
+
+    .buttonEdt {
+        background-color: white;
+        color: black;
+        border: 2px solid #555555;
+        position: absolute;
+        right: 13px;
+        top: 140px;
+    }
+
+        .buttonEdt:hover {
+            background-color: #555555;
+            color: white;
+        }
+
+    .buttonDel {
+        background-color: white;
+        color: black;
+        border: 2px solid #555555;
+    }
+
+        .buttonDel a {
+            text-decoration: none;
+        }
+
+
+        .buttonDel:hover {
+            background-color: #555555;
+            color: white;
+        }
+
+    .buttonEd {
+        background-color: white;
+        color: black;
+        border: 2px solid #555555;
+    }
+
+        .buttonEd:hover {
+            background-color: #555555;
+            color: white;
+        }
+</style>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div id="Ex">
+        <div>
+            <input v-model="Driver.id_driver" style="border:solid 1px; padding-bottom: 5px; font-size:20px" />
+            <input v-model="Driver.name" style="border:solid 1px; padding-bottom: 5px; font-size:20px" /><br />
+            <input v-model="Driver.add" style="border:solid 1px; padding-bottom: 5px; font-size:20px" />
+            <input v-model="Driver.phone" style="border:solid 1px; padding-bottom: 5px; font-size:20px" /><br />
+            <input v-model="Driver.note" style="border:solid 1px; padding-bottom: 5px; font-size:20px" />
+            <input v-model="Driver.flag" style="border:solid 1px; padding-bottom: 5px; font-size:20px" />
+            <button class="button buttonAdd" v-on:click="createUser">Thêm</button>
+            <button class="button buttonEdt" v-on:click="updateUser">Cập nhật</button>
+        </div>
+        <br />
+        <br />
+        <h2 style="text-align:center">Danh sách Driver</h2>
+        @*<div class="col-lg-12">
+            <div class="col-md-4">
+                @*Thông tin trong ViewBag từ Controller sẽ được chuyển sang đây và được hiện lên textbox*@
+                @*<input type="text" value="@ViewBag.SearchString" name="searchString" />
+            </div>
+            <div class="col-md-4">
+                <button type="submit">Tìm kiếm</button>
+            </div>
+        </div>*@
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size:20px">
+            <tr style="text-align:center">
+                <th>ID</th>
+                <th>Name</th>
+                <th>Add</th>
+                <th>Phone</th>
+                <th>Note</th>
+                <th>Flag</th>
+                <th>##</th>
+            </tr>
+            
+            <tr v-for="(item,index) in items " style="text-align:center">
+                <td>{{item.id_driver}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.add}}</td>
+                <td>{{item.phone}}</td>
+                <td>{{item.note}}</td>
+                <td>{{item.flag}}</td>
+                <td>
+                    <button class="button buttonDel" v-on:click="deleteUser(item.ID,index)">Xóa</button> ||
+                    <button class="button buttonEd" v-on:click="editUser(item,index)">Sửa</button>
+                </td>
+            </tr>
+        </table>
+       @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    new Vue({
+        el: '#Ex',
+        data () {
+            return {
+                objectIndex: 0,
+                items: [],
+                Driver: {
+                    id_driver: "id_driver",
+                    name: "name",
+                    birth: "birth",
+                    add: "add",
+                    phone: "phone",
+                    note: "note",
+                    flag: "flag",
+                }
+            }
+        },
+        methods: {
+            getID(id) {
+                axios.get('http://localhost:54429/Bus/GetData/', { params: { id } })
+                   .then(response => {
+                       if (response.data.success) {
+                           this.items = response.data.content;
+                       }
+                       else {
+                           callToast("Không thành công", response.data.message, "error");
+                       }
+                   })
+            },
+            getUser() {
+                axios.get('http://localhost:54429/Driver/GetData')
+                   .then(response => {
+                       if (response.data.success) {
+                           this.items = [];
+                           this.items = response.data.content;
+                       }
+                       else {
+                           callToast("Không thành công", response.data.message, "error");
+                       }
+                   })
+            },
+            createUser() {
+                axios.post('http://localhost:54429/Driver/Create', this.Driver)
+                    .then(response => {
+                        if (response.data.success) {
+                            this.getUser();
+                        }
+                        else {
+                            callToast("Không thành công", response.data.message, "error");
+                        }
+                    })
+            },
+            deleteUser(id, index) {
+
+                axios.get('http://localhost:54429/Driver/Delete', { params: { id } })
+                   .then(response => {
+                       if (response.data.success) {
+                           this.items.splice(index, 1);
+                       }
+                       else {
+                           callToast("Không thành công", response.data.message, "error");
+                       }
+                   })
+            },
+            updateUser() {
+                axios.post('http://localhost:54429/Driver/Edit', this.Driver)
+                    .then(response => {
+                        if (response.data.success) {
+                            // this.items = response.data.content;
+                            this.items.splice(this.objectIndex, 1, response.data.content);
+                        }
+                        else {
+                            callToast("Không thành công", response.data.message, "error");
+                        }
+                    })
+            },
+            editUser(user, index) {
+                this.objectIndex = index;
+                this.Driver = {
+                    id_driver: user.id_driver,
+                    name: user.name,
+                    birth: user.birth,
+                    add: user.add,
+                    phone: user.phone,
+                    note: user.note,
+                    flag:user.flag,
+                };
+            },
+
+        },
+        mounted () {
+            this.getUser();
+        }
+    })
+</script>     
+}
+

@@ -1,5 +1,5 @@
 ﻿using Model.Dao;
-
+using Model.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +21,9 @@ namespace WTR.Areas.Admin.Controllers
             try
             {
                 var dao = new PassengerDao();
-                List<Model.EF.wrt_i_passenger> lst = dao.getAll().ToList();
+                List<wrt_i_passenger> lst = dao.getAll().ToList();
                 List<object> lstPassenger = new List<object>();
-                foreach (Model.EF.wrt_i_passenger item in lst)
+                foreach (wrt_i_passenger item in lst)
                 {
                     lstPassenger.Add(new
                     {
@@ -31,7 +31,8 @@ namespace WTR.Areas.Admin.Controllers
                         name = item.name,
                         phone = item.phone,
                         pass = item.pass,
-                        email = item.e_mail,
+                        e_mail = item.e_mail,
+                        flag= item.flag,
                     });
                 }
                 return Json(new { success = true, content = lstPassenger }, JsonRequestBehavior.AllowGet);
@@ -48,7 +49,7 @@ namespace WTR.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Model.EF.wrt_i_passenger passenger)
+        public ActionResult Create(wrt_i_passenger passenger)
         {
             try
             {
@@ -62,7 +63,7 @@ namespace WTR.Areas.Admin.Controllers
             }
         }
         [HttpPost]
-        public ActionResult Edit(Model.EF.wrt_i_passenger passenger)
+        public ActionResult Edit(wrt_i_passenger passenger)
         {
             var dao = new PassengerDao();
             var result = dao.Update(passenger);

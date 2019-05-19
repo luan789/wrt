@@ -15,7 +15,7 @@ namespace Model.EF
         [StringLength(50)]
         public string add { get; set; }
 
-        [StringLength(15)]
+        [StringLength(50)]
         public string phone { get; set; }
 
         [StringLength(1)]
