@@ -1,0 +1,398 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Nhà xe Thành Đạt</title>
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="/Assets/Client/assets/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/Assets/Client/assets/dist/fontawesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/Assets/Client/assets/dist/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="/Assets/Client/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/Assets/Client/assets/css/seat.css">
+    <!-- js -->
+    <script type="text/javascript" src="/Assets/Client/assets/js/jquery.js"></script>
+    <script type="text/javascript" src="/Assets/Client/assets/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Assets/Client/assets/dist/fontawesome/js/all.min.js"></script>
+    <script type="text/javascript" src="/Assets/Client/assets/js/script.js"></script>
+    <script type="text/javascript" src="/Assets/Client/assets/js/booking.js"></script>
+    <script type="text/javascript" src="/Assets/Client/assets/js/WTR-I-Passenger.js"></script>
+    <script src="/Assets/Client/assets/dist/slick/slick.js"></script>
+    <script src="/Assets/Client/assets/js/jquery.seat-charts.js"></script>
+</head>
+<body id="home">
+    <section>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-xl navbar-dark bg-header">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><img src="/Assets/Client/assets/images/logo.png" alt="logo" width="90"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContentXL" aria-controls="navbarSupportedContentXL" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContentXL">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Lịch trình <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Khuyến mãi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Tin tức</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Tuyển dụng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Liên hệ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Đăng nhập</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Đăng ký</a>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-submit my-2 my-sm-0" id="" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav><!-- end nav -->
+        
+      @RenderBody()
+        <div class="container">
+           <div class="row py-5">
+               <div class="col-12 col-md-5">
+              
+                    <p class="text-danger">
+                        *** Quý hành khách có thể đặt vé qua tổng đài phục vụ 24/24 của chúng tôi (kể cả thứ 7 và Chủ Nhật): 1900 6067 hoặc mua vé tiện lợi ngay trên chiếc điện thoại thông minh của quý vị thông qua app FUTA Bus trên cả hai hệ điều hành phổ biến nhất hiện nay là IOS và Android
+                    </p>
+                </div>
+               <div class="col-12 col-md-7">
+                   <img src="/Assets/Client/assets/images/banner.jpg" class="img-fluid w-100">
+               </div>
+           </div>
+        </div>
+
+        <div class="container">
+            <div id="star-city" class="content">
+            <h4 class="text-upercase"><span><i class="fas fa-map-marker-alt"></i></span> Các điểm khởi hành</h4>
+            <div>
+                <ul>
+                   
+                    <li>
+                        <div class="card card-width">
+                            <div class="overflow-hidden">
+                                <img src="/Assets/Client/assets/images/VungTau.jpg" class="card-img-top" alt="Vũng Tàu">
+                            </div>
+                            <div class="card-body card-body-edit">
+                                <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Vũng Tàu</span></p>
+                                <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: HCM, Nha Trang, ...</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card card-width">
+                            <div class="overflow-hidden">
+                                <img src="/Assets/Client/assets/images/ThanhHoa.jpg" class="card-img-top" alt="...">
+                             </div>
+                            <div class="card-body card-body-edit">
+                                <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Thanh Hóa</span></p>
+                                <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Huế, HCM</p>
+                            </div>
+                            </div>
+                    </li>
+                    <li>
+                        <div class="card card-width">
+                            <div class="overflow-hidden">
+                                <img src="/Assets/Client/assets/images/PhanThiet.jpg" class="card-img-top" alt="...">
+                            </div>
+                            <div class="card-body card-body-edit">
+                                <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Phan Thiết</span></p>
+                                <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Vũng Tàu, HCM</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card card-width">
+                            <div class="overflow-hidden">
+                                <img src="/Assets/Client/assets/images/NhaTrang.jpg" class="card-img-top" alt="...">
+                            </div>
+                            <div class="card-body card-body-edit">
+                                <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Nha Trang</span></p>
+                                <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Vũng Tàu, HCM</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card card-width">
+                            <div class="overflow-hidden">
+                                <img src="/Assets/Client/assets/images/LongAn.jpg" class="card-img-top" alt="...">
+                                </div>
+                            <div class="card-body card-body-edit">
+                                <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Long An</span></p>
+                                <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Vũng Tàu, Cần Thơ, Bến Tre, HCM</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card card-width">
+                            <div class="overflow-hidden">
+                                <img src="/Assets/Client/assets/images/Hue.jpg" class="card-img-top" alt="...">
+                            </div>
+                                
+                            <div class="card-body card-body-edit">
+                                <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Huế</span></p>
+                                <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Thanh Hóa, Nha Trang, Phan Thiết,..</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card card-width">
+                            <div class="overflow-hidden">
+                                <img src="/Assets/Client/assets/images/HCM.png" class="card-img-top" alt="...">
+                            </div>
+                            <div class="card-body card-body-edit">
+                                <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Hồ Chí Minh</span></p>
+                                <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Vũng Tàu, Nha Trang, Phan Thiết,...</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card card-width">
+                            <div class="overflow-hidden">
+                                <img src="/Assets/Client/assets/images/HaNoi.jpg" class="card-img-top" alt="...">
+                            </div>
+                            <div class="card-body card-body-edit">
+                                <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Hà Nội</span></p>
+                                <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Thanh Hóa, Huế</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card card-width">
+                            <div class="overflow-hidden">
+                                <img src="/Assets/Client/assets/images/DaNang.png" class="card-img-top" alt="...">
+                            </div>
+                            <div class="card-body card-body-edit">
+                                <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Đà Nẵng</span></p>
+                                <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Vũng Tàu, Nha Trang, Phan Thiết, HCM,...</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card card-width">
+                            <div class="overflow-hidden">
+                                <img src="/Assets/Client/assets/images/DaLat.jpg" class="card-img-top" alt="...">
+                            </div>
+                            <div class="card-body card-body-edit">
+                                <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Đà Lạt</span></p>
+                                <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Vũng Tàu, HCM</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card card-width">
+                            <div class="overflow-hidden">
+                                <img src="/Assets/Client/assets/images/CanTho.jpg" class="card-img-top" alt="...">
+                            </div>
+                            <div class="card-body card-body-edit">
+                                <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Cần Thơ</span></p>
+                                <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Bến Tre</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card card-width">
+                            <div class="overflow-hidden">
+                                <img src="/Assets/Client/assets/images/BenTre.png" class="card-img-top" alt="...">
+                            </div>
+                            <div class="card-body card-body-edit">
+                                <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Bến Tre</span></p>
+                                <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Cần Thơ, HCM</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </div>
+
+        <div class="container">
+            <div id="body-slick">
+
+                <section class="post-slide">
+
+                    <div class="post text-center">
+                        <a href="#">
+                            <img src="/Assets/Client/assets/images/customer.png" class="img-fluid">
+                            <p>Hơn 20 triệu lượt khách</p>
+                            <p>Thành Đạt phục vụ hơn 20 triệu lượt khách/ bình quân 1 năm trên toàn quốc</p>
+                        </a>
+
+                    </div>
+                    <div class="post text-center">
+                        <a href="#">
+                            <img src="/Assets/Client/assets/images/home.png" class="img-fluid">
+                            <p>Hơn 200 Phòng vé, Trạm trung chuyển</p>
+                            <p>Phương Trang có hơn 200 Phòng vé, Trạm trung chuyển, Bến xe... trên toàn hệ thống FUTA</p>
+                        </a>
+                    </div>
+                    <div class="post text-center">
+                        <a href="#">
+                            <img src="/Assets/Client/assets/images/tech.png" class="img-fluid">
+                            <p>Hơn 1,000 chuyến mỗi ngày</p>
+                            <p>Phương Trang phục vụ hơn 1000 chuyến xe đường dài và liên tỉnh mỗi ngày.</p>
+                        </a>
+                    </div>
+                    <div class="post text-center">
+                        <a href="#">
+                            <img src="/Assets/Client/assets/images/home.png" class="img-fluid">
+                            <p>Hơn 200 Phòng vé, Trạm trung chuyển</p>
+                            <p>Phương Trang có hơn 200 Phòng vé, Trạm trung chuyển, Bến xe... trên toàn hệ thống FUTA</p>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </div>
+        @*end slide slick*@
+    </section>
+    <script>
+        var firstSeatLabel = 1;
+
+        $(document).ready(function () {
+            var $cart = $('#selected-seats'),
+                $counter = $('#counter'),
+                $total = $('#total'),
+                sc = $('#seat-map').seatCharts({
+                    map: [
+						'ee___',
+						'ee_ee',
+						'ee_ee',
+						'ee_ee',
+						'ee___',
+						'ee_ee',
+						'ee_ee',
+						'ee_ee',
+						'eeeee',
+                    ],
+                    seats: {
+                        f: {
+                            price: 100,
+                            classes: 'first-class', //your custom CSS class
+                            category: 'First Class'
+                        },
+                        e: {
+                            price: 40,
+                            classes: 'economy-class', //your custom CSS class
+                            category: 'Economy Class'
+                        }
+
+                    },
+                    naming: {
+                        top: false,
+                        getLabel: function (character, row, column) {
+                            return firstSeatLabel++;
+                        },
+                    },
+                    legend: {
+                        node: $('#legend'),
+                        items: [
+							['e', 'available', 'Economy Class'],
+							['f', 'unavailable', 'Already Booked']
+                        ]
+                    },
+                    click: function () {
+                        if (this.status() == 'available') {
+                            //let's create a new <li> which we'll add to the cart items
+                            $('<li>' + this.data().category + ' Seat # ' + this.settings.label + ': <b>$' + this.data().price + '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
+								.attr('id', 'cart-item-' + this.settings.id)
+								.data('seatId', this.settings.id)
+								.appendTo($cart);
+
+                            /*
+							 * Lets update the counter and total
+							 *
+							 * .find function will not find the current seat, because it will change its stauts only after return
+							 * 'selected'. This is why we have to add 1 to the length and the current seat price to the total.
+							 */
+                            $counter.text(sc.find('selected').length + 1);
+                            $total.text(recalculateTotal(sc) + this.data().price);
+
+                            return 'selected';
+                        } else if (this.status() == 'selected') {
+                            //update the counter
+                            $counter.text(sc.find('selected').length - 1);
+                            //and total
+                            $total.text(recalculateTotal(sc) - this.data().price);
+
+                            //remove the item from our cart
+                            $('#cart-item-' + this.settings.id).remove();
+
+                            //seat has been vacated
+                            return 'available';
+                        } else if (this.status() == 'unavailable') {
+                            //seat has been already booked
+                            return 'unavailable';
+                        } else {
+                            return this.style();
+                        }
+                    }
+                });
+
+            //this will handle "[cancel]" link clicks
+            $('#selected-seats').on('click', '.cancel-cart-item', function () {
+                //let's just trigger Click event on the appropriate seat, so we don't have to repeat the logic here
+                sc.get($(this).parents('li:first').data('seatId')).click();
+            });
+
+            //let's pretend some seats have already been booked
+            sc.get(['1_2', '4_1', '7_1', '7_2']).status('unavailable');
+
+        });
+
+        function recalculateTotal(sc) {
+            var total = 0;
+
+            //basically find every selected seat and sum its price
+            sc.find('selected').each(function () {
+                total += this.data().price;
+            });
+
+            return total;
+        }
+
+    </script>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-36251023-1']);
+        _gaq.push(['_setDomainName', 'jqueryscript.net']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+</body>
+
+</html>

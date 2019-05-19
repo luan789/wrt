@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/WTR.cshtml";
+}
+
+<div class="container">
+    <div id="body-top">
+        <div class="row booking">
+            <div class="col-12">
+                <!-- nav tabs -->
+                <div class="row v-tabs">
+                    <div role="presentation" class="col-6 active"><a href="#booking" class="" aria-controls="home" role="tab" data-toggle="tab">MUA VÉ XE TRỰC TUYẾN</a></div>
+                    <div class="col-6"><a href="#">HƯỚNG DẪN ĐẶT VÉ</a></div>
+                </div>
+                <!-- end nav tabs -->
+                <!-- tabs panes -->
+                <div class="tab-contents info-booking">
+                    <div class="tablepanel tab-pane active">
+                        <form class="form">
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label>Điểm khởi hành</label>
+                                        <div class="controls">
+                                            <i class="fas fa-bus icon"></i>
+
+                                            <select name="idOrigin" id="idOrigin" class="form-control selectpicker">
+                                                <option value="">Chọn điểm khởi hành</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Điểm đến</label>
+                                        <div class="controls">
+                                            <i class="fa fa-bus icon"></i>
+
+                                            <select name="idDest" id="idDest" class="form-control  selectpicker">
+                                                <option value="">Chọn điểm đến</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Ngày khởi hành</label>
+                                        <div class="controls">
+                                            <i class="far fa-clock icon"></i>
+                                            <input type="text" name="dDate" placeholder=" dd/mm/yyyy" class="form-control dDate date-readonly" value="" readonly />
+                                            <small><em>Định dạng: dd-mm-yyyy</em></small>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Số lượng vé</label>
+                                        <div class="controls">
+                                            <i class="fas fa-ticket-alt icon"></i>
+
+                                            <input type="number" name="numOfTicket" placeholder="1" value="1" class="form-control" min="1" max="10" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-12">
+                                    <a href="http://localhost:62594/Seat/Index" role="button" class="btn btn-primary btn-block btn-flat btn-booking">Mua vé</a>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- end tabs panes -->
+            </div>
+        </div>
+    </div>
+</div>

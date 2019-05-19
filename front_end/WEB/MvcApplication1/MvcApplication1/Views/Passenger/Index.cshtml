@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/WTR.cshtml";
+}
+<div class="container">
+    <div id="body-top">
+        <div id="body-contents">
+            
+            <div id="content-steps">
+                <!-- steps -->
+                <div class="steps2 ">
+                    <div class="row">
+                        <div class="col-12 col-md-5">
+                            <div class="tab-contents contents-step2">
+                                <p class="text-center text-upercase text-title">Thông tin khách hàng</p>
+                                <div class="group-step">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label>Họ tên<span class="text-danger">*</span></label>
+                                            <input type="email" class="form-control" id="js-name" aria-describedby="emailHelp" placeholder="Họ tên khách hàng">
+                                            <p id="val-name" class="text-danger text-note"></p>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row group-step">
+                                    <div class="col-12 col-md-6">
+                                        <label>Số điện thoại<span class="text-danger">*</span></label>
+                                        <input type="" class="form-control" onkeypress="return isNumberKey(event)" id="js-num" aria-describedby="number" placeholder="0345194003">
+                                        <p id="val-num" class="text-danger text-note"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label>Email<span class="text-danger">*</span></label>
+                                        <input type="email" class="form-control" id="js-email" aria-describedby="emailHelp" placeholder="name@example.com">
+                                        <p id="val-mail" class="text-danger text-note"></p>
+                                    </div>
+                                </div>
+                                <div class="row group-step">
+                                    <div class="col-12">
+                                        <label>Địa chỉ<span class="text-danger ">*</span></label>
+                                        <textarea class="form-control" aria-label="With textarea" id="js-add"></textarea>
+                                        <p id="val-add" class="text-danger text-note"></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-12">
+                                        <a href="http://localhost:62594/Seat/Index" role="button" class="btn btn-primary btn-block btn-flat btn-booking"><< Quay lại</a>
+
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <a href="#" role="button" class="btn btn-primary btn-block btn-flat btn-booking " onclick="checkVal()" id="js-btn-next">>> Tiếp tục</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-7">
+                            <div class="tab-contents contents-step2">
+                                <p class="text-upercase text-center text-title">Điều khoản & lưu ý</p>
+                                <p>(*) Quý khách vui lòng mang email có chứa mã vé đến văn phòng để đổi vé lên xe trước giờ xuất bến ít nhất <span class="text-title">60 phút</span> để chúng tôi trung chuyển. </p>
+                                <p>(*) Thông tin hành khách phải chính xác, nếu không sẽ không thể lên xe hoặc hủy/đổi vé</p>
+                                <p>(*) Quý khách không được đổi / trả vé vào các ngày Lễ Tết ( ngày thường qúy khách được quyền chuyển đổi hoặc hủy vé <span class="text-title">một lần</span>  duy nhất trước giờ xe chạy 24 giờ), phí hủy vé 10%. </p>
+                                <p>(*) Nếu quý khách có nhu cầu trung chuyển, vui lòng liên hệ số điện thoại <span class="text-title">1900 6067</span>  trước khi đặt vé. Chúng tôi sẽ không đón/ trung chuyển tại những điểm xe trung chuyển không thể tới được.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
