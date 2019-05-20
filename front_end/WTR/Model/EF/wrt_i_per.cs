@@ -18,10 +18,10 @@ namespace Model.EF
         [StringLength(7)]
         public string id_per { get; set; }
 
-        [StringLength(7)]
+        [StringLength(50)]
         public string name { get; set; }
 
-        [StringLength(2)]
+        [StringLength(50)]
         public string content_per { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

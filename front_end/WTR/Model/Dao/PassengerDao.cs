@@ -10,10 +10,10 @@ namespace Model.Dao
 {
     public class PassengerDao
     {
-        DbContentWTR db = null;
+        WRTdbContext db = null;
         public PassengerDao()
         {
-            db = new DbContentWTR();
+            db = new WRTdbContext();
         }
         public List<wrt_i_passenger> getAll()
         {
@@ -41,13 +41,12 @@ namespace Model.Dao
             {
                 return false;
             }
-
         }
         public bool Delete(string id)
         {
             try
             {
-                var user = db.wrt_i_passenger.Find(id);
+                wrt_i_passenger user = db.wrt_i_passenger.Find(id);
                 db.wrt_i_passenger.Remove(user);
                 db.SaveChanges();
                 return true;
@@ -56,7 +55,6 @@ namespace Model.Dao
             {
                 return false;
             }
-
         }
         public wrt_i_passenger ViewDetail(int id)
         {

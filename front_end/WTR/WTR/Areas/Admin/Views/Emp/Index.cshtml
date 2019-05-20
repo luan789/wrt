@@ -1,0 +1,231 @@
+﻿ 
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+@section header{
+    <!DOCTYPE html>
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js'></script>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons'>
+    <script src="//unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 4px 8px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        .buttonAdd {
+            background-color: white;
+            color: black;
+            border: 2px solid #555555;
+            position: absolute;
+            right: 13px;
+            top: 100px;
+        }
+
+            .buttonAdd:hover {
+                background-color: #555555;
+                color: white;
+            }
+
+        .buttonEdt {
+            background-color: white;
+            color: black;
+            border: 2px solid #555555;
+            position: absolute;
+            right: 13px;
+            top: 140px;
+        }
+
+            .buttonEdt:hover {
+                background-color: #555555;
+                color: white;
+            }
+
+        .buttonDel {
+            background-color: white;
+            color: black;
+            border: 2px solid #555555;
+        }
+
+            .buttonDel a {
+                text-decoration: none;
+            }
+
+
+            .buttonDel:hover {
+                background-color: #555555;
+                color: white;
+            }
+
+        .buttonEd {
+            background-color: white;
+            color: black;
+            border: 2px solid #555555;
+        }
+
+            .buttonEd:hover {
+                background-color: #555555;
+                color: white;
+            }
+    </style>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Index</title>
+    </head>
+    <body>
+        <div id="Ex">
+            <div>
+                <input v-model="Emp.name" style="border:solid 1px; padding-bottom: 5px; font-size:20px" />
+                <input v-model="Emp.pass" style="border:solid 1px; padding-bottom: 5px; font-size:20px" /><br />
+                <input v-model="Emp.e_mail" style="border:solid 1px; padding-bottom: 5px; font-size:20px" />
+                <input v-model="Emp.phone" style="border:solid 1px; padding-bottom: 5px; font-size:20px" /><br />
+                <input v-model="Emp.flag" style="border:solid 1px; padding-bottom: 5px; font-size:20px" />
+                <button class="button buttonAdd" v-on:click="createUser">Thêm</button>
+                <button class="button buttonEdt" v-on:click="updateUser">Cập nhật</button>
+            </div>
+            <br />
+            <br />
+            <h2 style="text-align:center">Danh sách User</h2>
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size:20px">
+                <tr style="text-align:center">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Password</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Flag</th>
+                    <th>##</th>
+                </tr>
+                <tr v-for="(item,index) in items " style="text-align:center">
+                    <td>{{item.id_employer}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.pass}}</td>
+                    <td>{{item.e_mail}}</td>
+                    <td>{{item.phone}}</td>
+                    <td>{{item.flag}}</td>
+                    <td>
+                        <button class="button buttonDel" v-on:click="deleteUser(item.ID,index)">Xóa</button> ||
+                        <button class="button buttonEd" v-on:click="editUser(item,index)">Sửa</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
+<script type="text/javascript">
+    new Vue({
+        el: '#Ex',
+        data () {
+            return {
+                objectIndex: 0,
+                items: [],
+                Emp: {
+                    id_employer: "PA000",
+                    name: "name",
+                    pass: "pass",
+                    e_mail: "e_mail",
+                    phone: "phone",
+                    flag: "flag",
+                }
+            }
+        },
+        methods: {
+            getID(id) {
+                axios.get('http://localhost:54429/Emp/GetData/', { params: { id } })
+                   .then(response => {
+                       if (response.data.success) {
+                           console.log("co vo kho22");
+                           this.items = response.data.content;
+                       }
+                   })
+            },
+            getUser() {
+                console.log("co vo kho123");
+                axios.get('http://localhost:3000/employer')
+                   .then(response => {
+                       this.items = [];
+                       this.items = response.data.data[0];
+                       var newarray = this.items.map(a=>
+                           console.log(a.add)
+                       );
+                       
+                       //if (response.data.success) {
+                       //    this.items = [];
+                       //    this.items = response.data.content;
+                       //}
+                       //else {
+                       //    callToast("Không thành công", response.data.message, "error");
+                       //}
+                   })
+            },
+            createUser() {
+                axios.post('http://localhost:54429/Emp/Create', this.Emp)
+                    .then(response => {
+                        if (response.data.success) {
+                            this.getUser();
+                        }
+                        else {
+                            callToast("Không thành công", response.data.message, "error");
+                        }
+                    })
+            },
+            deleteUser(id, index) {
+
+                axios.get('http://localhost:54429/Emp/Delete', { params: { id} })
+                   .then(response => {
+                       if (response.data.success) {
+                           this.items.splice(index, 1);
+                       }
+                       else {
+                           callToast("Không thành công", response.data.message, "error");
+                       }
+                   })
+            },
+            updateUser() {
+                axios.post('http://localhost:54429/Emp/Edit', this.Emp)
+                    .then(response => {
+                        if (response.data.success) {
+                            // this.items = response.data.content;
+                            this.items.splice(this.objectIndex, 1, response.data.content);
+                        }
+                        else {
+                            callToast("Không thành công", response.data.message, "error");
+                        }
+                    })
+            },
+            editUser(user, index) {
+                this.objectIndex = index;
+                this.Emp = {
+                    id_employer: user.id_employer,
+                    name: user.name,
+                    pass: user.pass,
+                    e_mail: user.e_mail,
+                    phone: user.phone,
+                    flag: user.flag,
+                };
+            },
+
+        },
+        mounted () {
+            
+            this.getUser();
+        }
+    })
+</script>
+}
+
