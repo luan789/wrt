@@ -17,6 +17,10 @@ body{
 			a{
 				color: #FDFFFE !important;
 				font-weight: bold;
+				&:hover{
+					color: #414141 !important;
+				};
+
 			}
 		}
 	}
@@ -28,6 +32,7 @@ body{
 			&:hover{
 				background: #F1A108;
 				border-color: #F1A108; 
+				color: #FFFFE6;
 			};
 		}
 	}
@@ -38,8 +43,27 @@ body{
 		display: table;
 	};
 }
+.text-title{
+	color: #414141;
+	font-weight: bold;
+}
 #body-top{
 	margin-top: 20px;
+	.form-border{
+		border-bottom: 1px solid #ced4da !important;
+	}
+	.contents-step2{
+		padding: 15px;
+		.group-step{
+			margin-bottom: 15px;
+			label{
+				font-weight: bold;
+			}
+		}
+	}
+	.info-booking{
+		padding: 10px;
+	}
 	.v-tabs {
 	    margin: 0;
 	    padding: 0;
@@ -55,9 +79,7 @@ body{
 	}
 	.tab-contents{
 		border: 1px solid #d1d1d1;
-		#booking{
-			padding: 15px 15px;
-			.form{
+		.form{
 				.form-group{
 					margin-bottom: 15px;
 					label{
@@ -81,7 +103,6 @@ body{
 				    text-indent: 10px;
 				}
 			}
-		}
 	}
 	.btn{
 		&-booking{
@@ -133,14 +154,21 @@ body{
 	.selected{
 		cursor: pointer;
 		vertical-align: center;
-			background: #F1A108;
-		}
+		background: #F1A108;
+	}
 	.chosed-seat{
 		cursor: not-allower;
 		background: #818284;
 	}
 }
 #body-contents{
+	.text-note{
+		font-size: 13px;
+	}
+	display: none;
+	.steps2{
+		display: none;
+	}
 	table{
 		tr{
 			td:nth-child(1){
@@ -162,7 +190,6 @@ body{
 	}
 	#steps{
 		width: 100%;
-		padding: 0 15px;
 		ul{
 			margin: 0;
 		    padding: 0;

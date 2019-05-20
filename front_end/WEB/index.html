@@ -13,13 +13,16 @@
 	<script type="text/javascript" src="assets/js/jquery.js"></script>
 	<script type="text/javascript" src="assets/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="assets/dist/fontawesome/js/all.min.js"></script>
+	<script type="text/javascript" src="assets/js/script.js"></script>
+	<script type="text/javascript" src="assets/js/booking.js"></script>
+	<script type="text/javascript" src="assets/js/WTR-I-Passenger.js"></script>
 </head>
 <body id="home">
 	<section>
 		<!-- Navigation -->
 		<nav class="navbar navbar-expand-xl navbar-dark bg-header">
 			<div class="container">
-			    <a class="navbar-brand" href="#"><img src="assets/images/logo.png" alt="logo" width="90"></a>
+			    <a class="navbar-brand" href="index.html"><img src="assets/images/logo.png" alt="logo" width="90"></a>
 			    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContentXL" aria-controls="navbarSupportedContentXL" aria-expanded="false" aria-label="Toggle navigation">
 			        <span class="navbar-toggler-icon"></span>
 			    </button>
@@ -36,19 +39,28 @@
 			                <a class="nav-link" href="#">Tin tức</a>
 			            </li>
 			            <li class="nav-item">
-			                <a class="nav-link disabled" href="#">Disabled</a>
+			                <a class="nav-link" href="#">Tuyển dụng</a>
+			            </li>
+			            <li class="nav-item">
+			                <a class="nav-link" href="#">Liên hệ</a>
+			            </li>
+			            <li class="nav-item">
+			                <a class="nav-link" href="#">Đăng nhập</a>
+			            </li>
+			            <li class="nav-item">
+			                <a class="nav-link" href="#">Đăng ký</a>
 			            </li>
 			        </ul>
 			        <form class="form-inline my-2 my-lg-0">
 			            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-			            <button class="btn btn-submit my-2 my-sm-0" type="submit">Search</button>
+			            <button class="btn btn-submit my-2 my-sm-0" id="" type="submit">Search</button>
 			        </form>
 			    </div>
 			</div>
 		</nav><!-- end nav -->
 		<div class="container">
-			<div>
-				<div class="row" id="body-top">
+			<div  id="body-top">
+				<div class="row booking">
 					<div class="col-12 col-md-5">
 						<!-- nav tabs -->
 						<div class="row v-tabs">
@@ -57,8 +69,8 @@
 						</div>
 						<!-- end nav tabs -->
 						<!-- tabs panes -->
-							<div class="tab-contents">
-								<div class="tablepanel" class="tab-pane active" id="booking">
+							<div class="tab-contents info-booking">
+								<div class="tablepanel tab-pane active">
 									<form class="form">
 										<div class="row">
 											<div class="col-12 col-md-6">
@@ -114,7 +126,7 @@
 										</div>
 										<div class="row">
 											<div class="col-md-6 col-12">
-												 <button type="button" class="btn btn-primary btn-block btn-flat btn-booking">Mua vé</button>
+												 <button type="button" class="btn btn-primary btn-block btn-flat btn-booking" id="js-booking">Mua vé</button>
 
 											</div>
 										</div>
@@ -127,15 +139,13 @@
 
 					</div>
 				</div>
-			</div>
-			<div>
 				<div id="body-contents">
 					<div id="steps">
 						<ul class="list-step">
-							<li class="active">
+							<li>
 								Chọn tuyến
 							</li>
-							<li>
+							<li class="active">
 								Chọn ghế
 							</li>
 							<li>
@@ -146,95 +156,215 @@
 							</li>
 						</ul>
 					</div>
-					<div id="content-steps">
-						<div class="row">
-							<div class="col-12 col-md-5">
-								
-							</div>
-							<div class="col-12 col-md-7">
-								<div class="panel">
-									<div class="row">
-										<div class="col-6">
-											Số lượng vé: <span>Chưa chọn ghế</span><span></span>
-										</div>
-										<div class="col-6 text-right">
-											Tổng tiền: <span></span>
+					<div id="content-steps"><!-- steps -->
+						<div class="steps1">
+							<div class="row">
+								<div class="col-12 col-md-5">
+									<div class="tab-contents">
+										<div class="info-booking">
+											<p class="text-center text-title text-upercase">HCM-Vũng Tàu<span>12/12/2012</span></p>
+											<div class="tablepanel tab-pane active">
+												<form class="form">
+													<div class="row">
+														<div class="col-12 form-group">
+															<div class="">
+																<label>Tuyến xe</label>
+																<p class="text-upercase"><span class="float-left">HCM-Vũng Tàu</span><span class="float-right">
+																	<span>100.000</span>
+																</span></p>
+															</div>
+														</div>
+														
+													</div>
+													<div class="row">
+														<div class="col-12">
+															<div class="form-group">
+									                            <label for="">Giờ khởi hành</label>
+									                            <div class="controls">
+									                                <i class="far fa-clock icon"></i>
+									                                <select name="idDest" id="idDest" class="form-control  selectpicker">
+									                                    <option value="">Chọn giờ khởi hành</option>
+									                                </select>
+									                            </div>
+									                        </div>
+
+														</div>
+														
+													</div>
+													<div class="row">
+														<div class="col-12">
+															<div class="form-group">
+									                            <label for="">Điêm đón</label>
+									                            <div class="controls">
+									                                <i class="fas fa-map-marker-alt icon"></i>
+									                                <select name="idDest" id="idDest" class="form-control  selectpicker">
+									                                    <option value="">Chọn điểm đón</option>
+									                                </select>
+									                            </div>
+									                        </div>
+
+														</div>
+														
+													</div>
+													<div class="row">
+														<div class="col-md-6 col-12">
+															 <button type="button" class="btn btn-primary btn-block btn-flat btn-booking" id="js-btn-prev"><< Quay lại</button>
+
+														</div>
+														<div class="col-md-6 col-12">
+															 <button type="button" class="btn btn-primary btn-block btn-flat btn-booking " id="js-btn-next">>> Tiếp tục</button>
+
+														</div>
+													</div>
+												</form>
+											</div>
 										</div>
 									</div>
-									<div>
-										<table class="table table-borderless grid-seat">
-											  <thead>
-											    <tr>
-											      <th scope="col" colspan="5"><p class="text-center text-upercase">Sơ đồ ghế</p></th>
-											    </tr>
-											  </thead>
-											  <tbody>
-											    <tr>
-											      <td>
-											      	<div class="seat chosed-seat">1</div>
-											      </td>
-											      <td><div class="seat selected">2</div></td>
-											      <td><div class="seat">3</div></td>
-											      <td><div class="seat">4</div></td>
-											    </tr>
-											    <tr>
-											       <td>
-											      	<div class="seat">5</div>
-											      </td>
-											      <td><div class="seat">6</div></td>
-											      <td><div class="seat">7</div></td>
-											      <td><div class="seat">8</div></td>
-											    </tr>
-											    <tr>
-											       <td>
-											      	<div class="seat">9</div>
-											      </td>
-											      <td><div class="seat">10</div></td>
-											      <td><div class="seat">11</div></td>
-											      <td><div class="seat">12</div></td>
-											    </tr>
-											    <tr>
-											       <td>
-											      	<div class="seat">9</div>
-											      </td>
-											      <td><div class="seat">10</div></td>
-											      <td><div class="seat">11</div></td>
-											      <td><div class="seat">12</div></td>
-											    </tr>
-											    <tr>
-											       <td>
-											      	<div class="seat">9</div>
-											      </td>
-											      <td><div class="seat">10</div></td>
-											      <td><div class="seat">11</div></td>
-											      <td><div class="seat">12</div></td>
-											    </tr>
-											    <tr>
-											       <td>
-											      	<div class="seat">13</div>
-											      </td>
-											      <td><div class="seat">14</div></td>
-											      <td><div class="seat">15</div></td>
-											      <td><div class="seat">16</div></td>
-											    </tr>
-											    <tr>
-											       <td>
-											      	<div class="seat">17</div>
-											      </td>
-											      <td><div class="seat">18</div></td>
-											      <td><div class="seat">19</div></td>
-											      <td><div class="seat">20</div></td>
-											    </tr>
-											    <tr>
-											       <td>
-											      	<div class="seat">21</div>
-											      </td>
-											      <td><div class="seat">22</div></td>
-											      <td><div class="seat">23</div></td>
-											      <td><div class="seat">24</div></td>
-											    </tr>
-											  </tbody>
-											</table>
+								</div>
+								<div class="col-12 col-md-7"><!-- seat -->
+									<div class="panel">
+										<div class="row">
+											<div class="col-6">
+												Số lượng vé: <span>Chưa chọn ghế</span><span></span>
+											</div>
+											<div class="col-6 text-right">
+												Tổng tiền: <span></span>
+											</div>
+										</div>
+										<div id="grid-seat">
+											<table class="table table-borderless grid-seat">
+												  <thead>
+												    <tr>
+												      <th scope="col" colspan="5"><p class="text-center text-upercase">Sơ đồ ghế</p></th>
+												    </tr>
+												  </thead>
+												  <tbody>
+												    <tr>
+												      <td>
+												      	<div class="seat" onclick="seatClick()">1</div>
+												      </td>
+												      <td><div class="seat">2</div></td>
+												      <td></td>
+												      <td><div class="seat">3</div></td>
+												      <td><div class="seat">4</div></td>
+												    </tr>
+												    <tr>
+												       <td>
+												      	<div class="seat">5</div>
+												      </td>
+												      <td><div class="seat">6</div></td>
+												      <td></td>
+												      <td><div class="seat">7</div></td>
+												      <td><div class="seat">8</div></td>
+												    </tr>
+												    <tr>
+												       <td>
+												      	<div class="seat">9</div>
+												      </td>
+												      <td><div class="seat">10</div></td>
+												      <td></td>
+												      <td><div class="seat">11</div></td>
+												      <td><div class="seat">12</div></td>
+												    </tr>
+												    <tr>
+												       <td>
+												      	<div class="seat">9</div>
+												      </td>
+												      <td><div class="seat">10</div></td>
+												      <td></td>
+												      <td><div class="seat">11</div></td>
+												      <td><div class="seat">12</div></td>
+												    </tr>
+												   
+												    <tr>
+												       <td>
+												      	<div class="seat">13</div>
+												      </td>
+												      <td><div class="seat">14</div></td>
+												      <td></td>
+												      <td><div class="seat">15</div></td>
+												      <td><div class="seat">16</div></td>
+												    </tr>
+												    <tr>
+												       <td>
+												      	<div class="seat">17</div>
+												      </td>
+												      <td><div class="seat">18</div></td>
+												      <td></td>
+												      <td><div class="seat">19</div></td>
+												      <td><div class="seat">20</div></td>
+												    </tr>
+												    <tr>
+												       <td>
+												      	<div class="seat">21</div>
+												      </td>
+												      <td><div class="seat">22</div></td>
+												      <td></td>
+												      <td><div class="seat">23</div></td>
+												      <td><div class="seat">24</div></td>
+												    </tr>
+												  </tbody>
+												</table>
+										</div>
+									</div>
+								</div><!-- end seat -->
+							</div>
+						</div>
+						<div class="steps2 ">
+							<div class="row">
+								<div class="col-12 col-md-5">
+									<div class="tab-contents contents-step2">
+										<p class="text-center text-upercase text-title">Thông tin khách hàng</p>
+										<div class="group-step">
+											<div class="row">
+												<div class="col-12">
+													<label>Họ tên<span class="text-danger">*</span></label>
+													<input type="email" class="form-control" id="js-name" aria-describedby="emailHelp" placeholder="Họ tên khách hàng">
+													<p id="val-name" class="text-danger text-note"></p>
+												</div>
+												<div class="col-12 col-md-6">
+
+												</div>
+											</div>
+										</div>
+										<div class="row group-step">
+											<div class="col-12 col-md-6">
+												<label>Số điện thoại<span class="text-danger">*</span></label>
+												<input type="" class="form-control"  onKeyPress="return isNumberKey(event)" id="js-num" aria-describedby="number"  placeholder="0345194003">
+												<p id="val-num" class="text-danger text-note"></p>
+											</div>
+											<div class="col-12 col-md-6">
+												<label>Email<span class="text-danger">*</span></label>
+												<input type="email" class="form-control" id="js-email" aria-describedby="emailHelp" placeholder="name@example.com">
+												<p id="val-mail" class="text-danger text-note"></p>
+											</div>
+										</div>
+										<div class="row group-step">
+											<div class="col-12">
+												<label>Địa chỉ<span class="text-danger ">*</span></label>
+												<textarea class="form-control" aria-label="With textarea" id="js-add"></textarea>
+												<p id="val-add" class="text-danger text-note"></p>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6 col-12">
+												 <button type="button" class="btn btn-primary btn-block btn-flat btn-booking" id="js-btn-prev"><< Quay lại</button>
+
+											</div>
+											<div class="col-md-6 col-12">
+												 <button type="button" class="btn btn-primary btn-block btn-flat btn-booking " onclick="checkVal()" id="js-btn-next">>> Tiếp tục</button>
+
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-12 col-md-7">
+									<div class="tab-contents contents-step2">
+										<p class="text-upercase text-center text-title">Điều khoản & lưu ý</p>
+										<p>(*) Quý khách vui lòng mang email có chứa mã vé đến văn phòng để đổi vé lên xe trước giờ xuất bến ít nhất <span class="text-title">60 phút</span> để chúng tôi trung chuyển. </p>
+										<p>(*) Thông tin hành khách phải chính xác, nếu không sẽ không thể lên xe hoặc hủy/đổi vé</p>
+										<p>(*) Quý khách không được đổi / trả vé vào các ngày Lễ Tết ( ngày thường qúy khách được quyền chuyển đổi hoặc hủy vé <span class="text-title">một lần</span>  duy nhất trước giờ xe chạy 24 giờ), phí hủy vé 10%. </p>
+										<p>(*) Nếu quý khách có nhu cầu trung chuyển, vui lòng liên hệ số điện thoại <span class="text-title">1900 6067</span>  trước khi đặt vé. Chúng tôi sẽ không đón/ trung chuyển tại những điểm xe trung chuyển không thể tới được.</p>
 									</div>
 								</div>
 							</div>
@@ -244,6 +374,6 @@
 			</div>
 		</div>
 	</section>
-		
+	
 </body>
 </html>

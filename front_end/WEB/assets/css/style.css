@@ -19,6 +19,10 @@ body {
   font-weight: bold;
 }
 
+.navbar ul li a:hover {
+  color: #414141 !important;
+}
+
 .navbar .btn-submit {
   background: #fbaf1e;
   color: #fff;
@@ -28,6 +32,7 @@ body {
 .navbar .btn-submit:hover {
   background: #F1A108;
   border-color: #F1A108;
+  color: #FFFFE6;
 }
 
 .clearfix:before, #body-contents #steps ul:before {
@@ -35,8 +40,33 @@ body {
   display: table;
 }
 
+.text-title {
+  color: #414141;
+  font-weight: bold;
+}
+
 #body-top {
   margin-top: 20px;
+}
+
+#body-top .form-border {
+  border-bottom: 1px solid #ced4da !important;
+}
+
+#body-top .contents-step2 {
+  padding: 15px;
+}
+
+#body-top .contents-step2 .group-step {
+  margin-bottom: 15px;
+}
+
+#body-top .contents-step2 .group-step label {
+  font-weight: bold;
+}
+
+#body-top .info-booking {
+  padding: 10px;
 }
 
 #body-top .v-tabs {
@@ -59,29 +89,25 @@ body {
   border: 1px solid #d1d1d1;
 }
 
-#body-top .tab-contents #booking {
-  padding: 15px 15px;
-}
-
-#body-top .tab-contents #booking .form .form-group {
+#body-top .tab-contents .form .form-group {
   margin-bottom: 15px;
 }
 
-#body-top .tab-contents #booking .form .form-group label {
+#body-top .tab-contents .form .form-group label {
   font-weight: bold;
 }
 
-#body-top .tab-contents #booking .form .controls {
+#body-top .tab-contents .form .controls {
   position: relative;
 }
 
-#body-top .tab-contents #booking .form .controls .icon {
+#body-top .tab-contents .form .controls .icon {
   position: absolute;
   top: 8px;
   color: #00877E;
 }
 
-#body-top .tab-contents #booking .form select, #body-top .tab-contents #booking .form input {
+#body-top .tab-contents .form select, #body-top .tab-contents .form input {
   border: none;
   border-bottom: 2px solid #f5f5f5;
   box-shadow: none;
@@ -151,9 +177,20 @@ body {
   background: #818284;
 }
 
+#body-contents {
+  display: none;
+}
+
+#body-contents .text-note {
+  font-size: 13px;
+}
+
+#body-contents .steps2 {
+  display: none;
+}
+
 #body-contents #steps {
   width: 100%;
-  padding: 0 15px;
 }
 
 #body-contents #steps ul {
