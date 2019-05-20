@@ -110,18 +110,20 @@ body{
 			}
 	}
 	.btn{
-		&-booking{
-			background: #00877E;
+	&-booking{
+		background: #00877E;
+		color: #fff;
+		&:hover{
+			background: #00A07E;
 			color: #fff;
-			&:hover{
-				background: #00A07E;
-			};
-			@media (max-width: #{$lg}){
-				margin-bottom: 5px;
-			}
+		};
+		@media (max-width: #{$lg}){
+			margin-bottom: 5px;
 		}
-		
 	}
+		
+}
+	
 }
 %steps{
 	content: '';

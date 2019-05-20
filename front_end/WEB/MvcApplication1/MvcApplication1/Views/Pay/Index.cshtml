@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/WTR.cshtml";
+}
+
+<div class="container">
+    <div id="body-pay">
+        <div class="note">
+            <b>Lưu ý !</b>Nếu quý khách chọn hình thức thanh toán chuyển khoản, vui lòng chuyển khoản tiền vé trong vòng <b>12 tiếng</b> kể từ thời gian đặt vé.
+            Để việc chuyển khoản được diễn ra nhanh chóng và tiện lợi, quý khách có thể ra ATM hoặc quầy giao dịch của ngân hàng VietinBank hoặc Agribank để chuyển khoản trực tiếp vào tài khoản Phương Trang.
+            Thời gian chuyển khoản: <b>08:00 đến 17:00 trong ngày</b>,<b>không nhận đặt vé chuyển khoản vào các ngày thứ Bảy, Chủ nhật</b>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="panel">
+                        <p class="text-upercase text-center text-title">Chọn cổng thanh toán</p>
+                        <div class="payment">
+                            <ul class="row">
+                                <li class="col-12 col-md-4">
+                                    <div class="text-center panel-pay">
+                                        <p class="text-center">Thanh toán thẻ tín dụng/ghi nợ</p>
+                                        <div class="payment-img">
+                                            <img src="/Assets/Client/assets/images/visa-card.gif" alt="Thanh toán thẻ tín dụng/ghi nợ" class="img-fluid">
+                                        </div>
+                                        <input type="radio" />
+                                    </div>
+                                </li>
+                                <li class="col-12 col-md-4">
+                                    <div class="text-center panel-pay">
+                                        <p class="text-center">Thanh toán thẻ ATM Nội địa</p>
+                                        <div class="payment-img">
+                                            <img src="/Assets/Client/assets/images/nganluong.vn.png" alt="Thanh toán thẻ ATM Nội địa" class="img-fluid">
+                                        </div>
+
+                                        <input type="radio" />
+                                    </div>
+                                </li>
+                                <li class="col-12 col-md-4">
+                                    <div class="text-center panel-pay">
+                                        <p class="text-center">Thanh toán thẻ ATM Nội địa</p>
+                                        <div class="payment-img">
+                                            <img src="/Assets/Client/assets/images/napas.jpg" alt="Thanh toán thẻ ATM Nội địa" class="img-fluid">
+                                        </div>
+                                        <input type="radio" class="text-center" />
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="col-12">
+                                <a href="http://localhost:62594/Passenger/Index" role="button" class="btn btn-primary btn-block btn-flat btn-booking">Quay lại</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="panel">
+                        <p class="text-upercase text-center text-title">Thông tin đặt vé</p>
+                        <div class="info">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>Tuyến:</td>
+                                        <td colspan="3"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ngày đi:</td>
+                                        <td></td>
+                                        <td>Ghế/giường:</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Điểm lên xe</td>
+                                        <td colspan="3"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Họ và tên:</td>
+                                        <td colspan="3"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email:</td>
+                                        <td></td>
+                                        <td>Số điện thoại:</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Thành tiền:</td>
+                                        <td colspan="3"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-block btn-flat btn-booking">Thanh toán</button>
+
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

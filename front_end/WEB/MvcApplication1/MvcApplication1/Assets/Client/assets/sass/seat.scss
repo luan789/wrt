@@ -11,6 +11,36 @@
 	.wr-top{
 		padding-bottom: 25px;
 	}
+	#seat-available{
+		font-size: 12px;
+		span{
+			width: 10px;
+			height: 10px;
+			background-color: #fff;
+			border: 1px solid #adadad;
+			margin-right: 5px;
+		}
+    }
+	#seat-selected{
+		font-size: 12px;
+		span{
+			width: 10px;
+			height: 10px;
+			background-color: #8AB88B;
+			border: 1px solid #8AB88B;
+			margin-right: 5px;
+		}
+	}
+	#seat-unavailable{
+		font-size: 12px;
+		span{
+			width: 10px;
+			height: 10px;
+			background-color: #adadad;
+			border: 1px solid #adadad;
+			margin-right: 5px;
+		}
+	}
 }
 .booking-details {
 	float: left;
@@ -119,19 +149,21 @@ div.seatCharts-row:after {
 }
 
 div.seatCharts-seat.selected {
-	background-color: aqua;
+	background-color: #8AB88B;
 }
 
 div.seatCharts-seat.focused {
-	background-color: #6db131;
+	background-color: #8AB88B;
 }
 
 div.seatCharts-seat.available {
-	background-color: green;
+	border: 1px solid #adadad;
+	background-color: #fff;
+	color: #000;
 }
 
 div.seatCharts-seat.unavailable {
-	background-color: red;
+	background-color: #adadad;
 	cursor: not-allowed;
 }
 
@@ -142,4 +174,5 @@ ul.seatCharts-legendList {
 li.seatCharts-legendItem {
 	margin-top: 10px;
 	line-height: 2;
+	margin-left: 0;
 }

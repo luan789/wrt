@@ -112,7 +112,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Models\HomeController.cs" />
+    <Compile Include="Controllers\PayController.cs" />
     <Compile Include="Controllers\PassengerController.cs" />
     <Compile Include="Controllers\SeatController.cs" />
     <Compile Include="Global.asax.cs">
@@ -124,6 +125,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Assets\Client\assets\css\pay.css" />
     <Content Include="Assets\Client\assets\css\seat.css" />
     <Content Include="Assets\Client\assets\css\style.css" />
     <Content Include="Assets\Client\assets\dist\css\bootstrap-grid.css" />
@@ -205,7 +207,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Assets\Admin\" />
-    <Folder Include="Controllers\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -245,6 +246,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Client\assets\sass\seat.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Pay\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Client\assets\sass\pay.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

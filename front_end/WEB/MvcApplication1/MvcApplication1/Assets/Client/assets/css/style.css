@@ -121,6 +121,7 @@ body {
 
 #body-top .btn-booking:hover {
   background: #00A07E;
+  color: #fff;
 }
 
 @media (max-width: 991.98px) {
