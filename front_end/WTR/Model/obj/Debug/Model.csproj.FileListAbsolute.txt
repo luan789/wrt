@@ -39,3 +39,17 @@ D:\wrt-master\wrt-master\front_end\WTR\Model\bin\Debug\PagedList.xml
 D:\wrt-master\wrt-master\front_end\WTR\Model\bin\Debug\PagedList.Mvc.xml
 D:\wrt-master\wrt-master\front_end\WTR\Model\obj\Debug\Model.dll
 D:\wrt-master\wrt-master\front_end\WTR\Model\obj\Debug\Model.pdb
+D:\wrt_v02\wrt\front_end\WTR\Model\bin\Debug\Model.dll.config
+D:\wrt_v02\wrt\front_end\WTR\Model\bin\Debug\Model.dll
+D:\wrt_v02\wrt\front_end\WTR\Model\bin\Debug\Model.pdb
+D:\wrt_v02\wrt\front_end\WTR\Model\bin\Debug\EntityFramework.dll
+D:\wrt_v02\wrt\front_end\WTR\Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\wrt_v02\wrt\front_end\WTR\Model\bin\Debug\PagedList.dll
+D:\wrt_v02\wrt\front_end\WTR\Model\bin\Debug\PagedList.Mvc.dll
+D:\wrt_v02\wrt\front_end\WTR\Model\bin\Debug\EntityFramework.xml
+D:\wrt_v02\wrt\front_end\WTR\Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\wrt_v02\wrt\front_end\WTR\Model\bin\Debug\PagedList.xml
+D:\wrt_v02\wrt\front_end\WTR\Model\bin\Debug\PagedList.Mvc.xml
+D:\wrt_v02\wrt\front_end\WTR\Model\obj\Debug\Model.dll
+D:\wrt_v02\wrt\front_end\WTR\Model\obj\Debug\Model.pdb
+D:\wrt_v02\wrt\front_end\WTR\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache

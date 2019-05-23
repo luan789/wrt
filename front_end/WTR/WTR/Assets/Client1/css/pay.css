@@ -1,0 +1,46 @@
+#body-pay .note {
+  margin: 30px 0;
+  border: 1px solid #8AB88B;
+  background: #E6E7E8;
+  padding: 10px;
+}
+
+#body-pay .panel {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+#body-pay .payment ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+#body-pay .payment ul li .panel-pay {
+  border: 0.5px dotted #ddd;
+}
+
+#body-pay .payment-img {
+  width: 100px;
+  height: 50px;
+}
+
+#body-pay .info .group-item {
+  border-bottom: 1px solid #ddd;
+}
+
+.btn-booking {
+  background: #00877E;
+  color: #fff;
+}
+
+.btn-booking:hover {
+  background: #00A07E;
+  color: #fff;
+}
+
+@media (max-width: 991.98px) {
+  .btn-booking {
+    margin-bottom: 5px;
+  }
+}

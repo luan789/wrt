@@ -14,7 +14,7 @@
 <div class="container">
     <div id="body-top">
         <div class="row booking">
-            <div class="col-12 col-md-5">
+            <div class="col-12">
                 <!-- nav tabs -->
                 <div class="row v-tabs">
                     <div role="presentation" class="col-6 active"><a href="#booking" class="" aria-controls="home" role="tab" data-toggle="tab">MUA VÉ XE TRỰC TUYẾN</a></div>
@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 col-12">
+                                <div class="col-md-4 col-12">
                                     <button type="button" class="btn btn-primary btn-block btn-flat btn-booking" id="js-booking" v-on:click="getUser2()">Mua vé</button>
 
                                 </div>
@@ -87,9 +87,6 @@
                     </div>
                 </div>
                 <!-- end tabs panes -->
-            </div>
-            <div class="col-12 col-md-7">
-
             </div>
         </div>
         <div id="body-contents">
@@ -179,7 +176,7 @@
                         </div>
                         <div class="col-12 col-md-7">
                             <!-- seat -->
-                            <div class="panel">
+                            @*<div class="panel">
                                 <div class="row">
                                     <div class="col-6">
                                         Số lượng vé: <span>Chưa chọn ghế</span><span></span>
@@ -263,6 +260,35 @@
                                         </tbody>
                                     </table>
                                 </div>
+                            </div>*@
+                            <div class="wrapper tab-content">
+                                <div class="wr-top">
+                                    <span class="float-left">Số ghế: <span id="counter">0</span></span><span class="float-right">Tổng tiền: <span id="total">0</span>vnd</span>
+                                </div>
+                                <div class="">
+
+                                    <div id="seat-map">
+                                        <div class="front-indicator text-center">Sơ đồ ghế</div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12 col-md-4">
+                                            <div id="seat-available">
+                                                <span class="px-2"></span>Ghế trống
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-4">
+                                            <div id="seat-selected">
+                                                <span class="px-2"></span>Ghế chọn
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-4">
+                                            <div id="seat-unavailable">
+                                                <span class="px-2"></span>Ghế đã chọn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div><!-- end seat -->
                     </div>
@@ -333,7 +359,7 @@
 <script language="javascript">
     $(document).ready(function () {
         $("#txtDate").datepicker({
-            dateFormat:'dd/mm/yy',
+            dateFormat:'dd/mm/yyyy',
             minDate: 0,
             maxDate: 30,
         });
