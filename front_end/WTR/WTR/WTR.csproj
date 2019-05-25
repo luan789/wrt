@@ -215,6 +215,7 @@
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Areas\Client\ClientAreaRegistration.cs" />
+    <Compile Include="Areas\Client\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Client\Controllers\HomeController.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\Encryptor.cs" />
@@ -232,6 +233,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Client1\css\jquery.seat-charts.css" />
     <Content Include="Assets\Client1\css\pay.css" />
     <Content Include="Assets\Client1\css\seat.css" />
     <Content Include="Assets\Client1\css\style.css" />
@@ -257,7 +259,9 @@
     <Content Include="Assets\Client1\images\ThanhHoa.jpg" />
     <Content Include="Assets\Client1\images\visa-card.gif" />
     <Content Include="Assets\Client1\images\VungTau.jpg" />
+    <Content Include="Assets\Client1\js\JavaScript.js" />
     <Content Include="Assets\Client1\js\jquery.seat-charts.js" />
+    <Content Include="Assets\Client1\js\seat.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
@@ -289,8 +293,9 @@
     <Content Include="Areas\Client\Views\Shared\View.cshtml" />
     <Content Include="Areas\Client\Views\Home\Index.cshtml" />
     <Content Include="Assets\Client1\sass\pay.scss" />
-    <Content Include="Assets\Client1\sass\seat.scss" />
     <Content Include="Assets\Client1\sass\style.scss" />
+    <Content Include="Assets\Client1\sass\seat.scss" />
+    <Content Include="Areas\Client\Views\Default\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

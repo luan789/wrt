@@ -183,8 +183,20 @@ body {
   background: #818284;
 }
 
+#body-contents {
+  display: none;
+}
+
 #body-contents .text-note {
   font-size: 13px;
+}
+
+#body-contents .steps2 {
+  display: none;
+}
+
+#body-contents .steps3 {
+  display: none;
 }
 
 #body-contents #steps {

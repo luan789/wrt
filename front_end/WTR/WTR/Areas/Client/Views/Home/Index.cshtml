@@ -3,6 +3,8 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Client/Views/Shared/View.cshtml";
 }
+
+
 <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js'></script>
 <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css'>
@@ -14,7 +16,7 @@
 <div class="container">
     <div id="body-top">
         <div class="row booking">
-            <div class="col-12">
+            <div class="col-12 col-md-5">
                 <!-- nav tabs -->
                 <div class="row v-tabs">
                     <div role="presentation" class="col-6 active"><a href="#booking" class="" aria-controls="home" role="tab" data-toggle="tab">MUA VÉ XE TRỰC TUYẾN</a></div>
@@ -32,8 +34,8 @@
                                         <div class="controls">
                                             <i class="fas fa-bus icon"></i>
 
-                                            <select name="idOrigin" id="idOrigin" class="form-control selectpicker" v-model="selected1">
-                                                <option v-for="item in items.data" v-bind:value="item.id_station">{{item.name}}</option>
+                                            <select name="idOrigin" id="idOrigin" class="form-control selectpicker">
+                                                <option value="">Chọn điểm khởi hành</option>
                                             </select>
                                         </div>
 
@@ -45,8 +47,8 @@
                                         <div class="controls">
                                             <i class="fa fa-bus icon"></i>
 
-                                            <select name="idDest" id="idDest" class="form-control selectpicker" v-model="selected2">
-                                                <option v-for="item in items.data" v-bind:value="item.id_station">{{item.name}}</option>
+                                            <select name="idDest" id="idDest" class="form-control  selectpicker">
+                                                <option value="">Chọn điểm đến</option>
                                             </select>
                                         </div>
                                     </div>
@@ -59,7 +61,7 @@
                                         <label for="">Ngày khởi hành</label>
                                         <div class="controls">
                                             <i class="far fa-clock icon"></i>
-                                            <input type="text" id="txtDate" name="dDate" placeholder="dd/mm/yyyy" class="form-control dDate date-readonly" value="" readonly />
+                                            <input type="text" name="dDate" placeholder=" dd/mm/yyyy" class="form-control dDate date-readonly" value="" readonly/>
                                             <small><em>Định dạng: dd-mm-yyyy</em></small>
                                         </div>
                                     </div>
@@ -78,8 +80,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4 col-12">
-                                    <button type="button" class="btn btn-primary btn-block btn-flat btn-booking" id="js-booking" v-on:click="getUser2()">Mua vé</button>
+                                <div class="col-md-6 col-12">
+                                    <button type="button" class="btn btn-primary btn-block btn-flat btn-booking" id="js-booking">Mua vé</button>
 
                                 </div>
                             </div>
@@ -87,6 +89,9 @@
                     </div>
                 </div>
                 <!-- end tabs panes -->
+            </div>
+            <div class="col-12 col-md-7">
+
             </div>
         </div>
         <div id="body-contents">
@@ -113,7 +118,7 @@
                         <div class="col-12 col-md-5">
                             <div class="tab-contents">
                                 <div class="info-booking">
-                                    <p class="text-center text-title text-upercase" v-for="item in items.data">{{item.note}}<span id="date"></span></p>
+                                    <p class="text-center text-title text-upercase">HCM-Vũng Tàu<span>12/12/2012</span></p>
                                     <div class="tablepanel tab-pane active">
                                         <form class="form">
                                             <div class="row">
@@ -121,8 +126,8 @@
                                                     <div class="">
                                                         <label>Tuyến xe</label>
                                                         <p class="text-upercase">
-                                                            <span class="float-left"v-for="item in items.data">{{item.note}}</span><span class="float-right">
-                                                                <span v-for="item in items.data">{{item.price}}</span>
+                                                            <span class="float-left">HCM-Vũng Tàu</span><span class="float-right">
+                                                                <span>100.000</span>
                                                             </span>
                                                         </p>
                                                     </div>
@@ -161,7 +166,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6 col-12">
-                                                    <button type="button" class="btn btn-primary btn-block btn-flat btn-booking" id="js-btn-prev"v-on:click="getUser()"><< Quay lại</button>
+                                                    <button type="button" class="btn btn-primary btn-block btn-flat btn-booking" id="js-btn-prev"><< Quay lại</button>
 
                                                 </div>
                                                 <div class="col-md-6 col-12">
@@ -176,91 +181,6 @@
                         </div>
                         <div class="col-12 col-md-7">
                             <!-- seat -->
-                            @*<div class="panel">
-                                <div class="row">
-                                    <div class="col-6">
-                                        Số lượng vé: <span>Chưa chọn ghế</span><span></span>
-                                    </div>
-                                    <div class="col-6 text-right">
-                                        Tổng tiền: <span></span>
-                                    </div>
-                                </div>
-                                <div id="grid-seat">
-                                    <table class="table table-borderless grid-seat">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" colspan="5"><p class="text-center text-upercase">Sơ đồ ghế</p></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="seat" onclick="seatClick()">1</div>
-                                                </td>
-                                                <td><div class="seat">2</div></td>
-                                                <td></td>
-                                                <td><div class="seat">3</div></td>
-                                                <td><div class="seat">4</div></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="seat">5</div>
-                                                </td>
-                                                <td><div class="seat">6</div></td>
-                                                <td></td>
-                                                <td><div class="seat">7</div></td>
-                                                <td><div class="seat">8</div></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="seat">9</div>
-                                                </td>
-                                                <td><div class="seat">10</div></td>
-                                                <td></td>
-                                                <td><div class="seat">11</div></td>
-                                                <td><div class="seat">12</div></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="seat">9</div>
-                                                </td>
-                                                <td><div class="seat">10</div></td>
-                                                <td></td>
-                                                <td><div class="seat">11</div></td>
-                                                <td><div class="seat">12</div></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    <div class="seat">13</div>
-                                                </td>
-                                                <td><div class="seat">14</div></td>
-                                                <td></td>
-                                                <td><div class="seat">15</div></td>
-                                                <td><div class="seat">16</div></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="seat">17</div>
-                                                </td>
-                                                <td><div class="seat">18</div></td>
-                                                <td></td>
-                                                <td><div class="seat">19</div></td>
-                                                <td><div class="seat">20</div></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="seat">21</div>
-                                                </td>
-                                                <td><div class="seat">22</div></td>
-                                                <td></td>
-                                                <td><div class="seat">23</div></td>
-                                                <td><div class="seat">24</div></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>*@
                             <div class="wrapper tab-content">
                                 <div class="wr-top">
                                     <span class="float-left">Số ghế: <span id="counter">0</span></span><span class="float-right">Tổng tiền: <span id="total">0</span>vnd</span>
@@ -270,7 +190,6 @@
                                     <div id="seat-map">
                                         <div class="front-indicator text-center">Sơ đồ ghế</div>
                                     </div>
-
                                     <div class="row">
                                         <div class="col-12 col-md-4">
                                             <div id="seat-available">
@@ -279,17 +198,18 @@
                                         </div>
                                         <div class="col-12 col-md-4">
                                             <div id="seat-selected">
-                                                <span class="px-2"></span>Ghế chọn
+                                                <span class="px-2"></span>Ghế trống
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-4">
                                             <div id="seat-unavailable">
-                                                <span class="px-2"></span>Ghế đã chọn
+                                                <span class="px-2"></span>Ghế trống
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div><!-- end seat -->
                     </div>
                 </div>
@@ -352,150 +272,8 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 </div>
-<script language="javascript">
-    $(document).ready(function () {
-        $("#txtDate").datepicker({
-            dateFormat:'dd/mm/yyyy',
-            minDate: 0,
-            maxDate: 30,
-        });
-        $('#js-booking').click(function () {
-            var a = $("#txtDate").datepicker({dateFormat:'dd/mm/yyyy'}).val();
-            $('#date').html(a);
-            console.log(a);
-        });        
-    });
-</script>
-<script type="text/javascript">
-    new Vue({
-        el: '#body-top',
-        data () {
-            return {
-                selected1: 'A',
-                selected2:'A',
-                objectIndex: 0,
-                items: [],
-                //Driver: {
-                //    id_driver: "id_driver",
-                //    name: "name",
-                //    birth: "birth",
-                //    add: "add",
-                //    phone: "phone",
-                //    note: "note",
-                //    flag: "flag",
-                //}
-            }
-        },
-        mounted () {
-            this.getUser();
-            this.getUser1();
-        },
-        methods: {
-            //getID(id) {
-            //    axios.get('http://localhost:54429/User/GetData/', { params: { id } })
-            //       .then(response => {
-            //           if (response.data.success) {
-            //               this.items = response.data.content;
-            //           }
-            //           else {
-            //               callToast("Không thành công", response.data.message, "error");
-            //           }
-            //       })
-            //},
-            getUser() {
-                axios.get('http://localhost:3000/station')
-                   .then(response => {
-                       //this.items = [];
-                       this.items = response.data;
-                       //if (response.data.success) {
-                       //    this.items = [];
-                       //    this.items = response.data.data.name;
-                       //}
-                       //else {
-                       //    callToast("Không thành công", response.data.message, "error");
-                       //}
-                   })
-            },
-            getUser1() {
-                axios.get('http://localhost:3000/station')
-                   .then(response => {
-                       //this.items = [];
-                       this.items = response.data;
-                       //if (response.data.success) {
-                       //    this.items = [];
-                       //    this.items = response.data.data.name;
-                       //}
-                       //else {
-                       //    callToast("Không thành công", response.data.message, "error");
-                       //}
-                   })
-            },
-            getUser2() {
-                axios.get('http://localhost:3000/st1/'+this.selected1+'/st2/'+this.selected2+'')
-                   .then(response => {
-                       //this.items = [];
-                       this.items = response.data;
-                       //if (response.data.success) {
-                       //    this.items = [];
-                       //    this.items = response.data.data.name;
-                       //}
-                       //else {
-                       //    callToast("Không thành công", response.data.message, "error");
-                       //}
-                   })
-            },
-            //createUser() {
-            //    axios.post('http://localhost:54429/User/Create', this.User)
-            //        .then(response => {
-            //            if (response.data.success) {
-            //                this.getUser();
-            //            }
-            //            else {
-            //                callToast("Không thành công", response.data.message, "error");
-            //            }
-            //        })
-            //},
-            //deleteUser(id,index) {
-
-            //    axios.get('http://localhost:54429/User/Delete', { params: { id} })
-            //       .then(response => {
-            //           if (response.data.success) {
-            //               this.items.splice(index, 1);
-            //           }
-            //           else {
-            //               callToast("Không thành công", response.data.message, "error");
-            //           }
-            //       })
-            //},
-            //updateUser() {
-            //    axios.post('http://localhost:54429/User/Edit', this.User)
-            //        .then(response => {
-            //            if (response.data.success) {
-            //                // this.items = response.data.content;
-            //                this.items.splice(this.objectIndex, 1, response.data.content);
-            //            }
-            //            else {
-            //                callToast("Không thành công", response.data.message, "error");
-            //            }
-            //        })
-            //},
-            //editUser(user, index) {
-            //    this.objectIndex = index;
-            //    this.User = {
-            //        id_passenger: user.id_passenger,
-            //        name: user.name,
-            //        pass: user.pass,
-            //        e_mail: user.e_mail,
-            //        phone: user.phone,
-            //        flag: user.flag,
-            //    };
-            //},
-
-        },
-
-    })
-</script>
