@@ -5,18 +5,10 @@
 }
 
 
-<script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js'></script>
-<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css'>
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons'>
-<link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="Stylesheet" type="text/css" />
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-<script src="//unpkg.com/axios/dist/axios.min.js"></script>
 <div class="container">
     <div id="body-top">
         <div class="row booking">
-            <div class="col-12 col-md-5">
+            <div class="col-12">
                 <!-- nav tabs -->
                 <div class="row v-tabs">
                     <div role="presentation" class="col-6 active"><a href="#booking" class="" aria-controls="home" role="tab" data-toggle="tab">MUA VÉ XE TRỰC TUYẾN</a></div>
@@ -33,9 +25,8 @@
                                         <label>Điểm khởi hành</label>
                                         <div class="controls">
                                             <i class="fas fa-bus icon"></i>
-
-                                            <select name="idOrigin" id="idOrigin" class="form-control selectpicker">
-                                                <option value="">Chọn điểm khởi hành</option>
+                                            <select name="idOrigin" id="idOrigin" class="form-control selectpicker" v-model="selected1">
+                                                <option v-for="item in items.data" v-bind:value="item.id_station">{{item.name}}</option>
                                             </select>
                                         </div>
 
@@ -47,8 +38,8 @@
                                         <div class="controls">
                                             <i class="fa fa-bus icon"></i>
 
-                                            <select name="idDest" id="idDest" class="form-control  selectpicker">
-                                                <option value="">Chọn điểm đến</option>
+                                            <select name="idDest" id="idDest" class="form-control  selectpicker" v-model="selected2">
+                                                <option v-for="item in items.data" v-bind:value="item.id_station">{{item.name}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -61,7 +52,7 @@
                                         <label for="">Ngày khởi hành</label>
                                         <div class="controls">
                                             <i class="far fa-clock icon"></i>
-                                            <input type="text" name="dDate" placeholder=" dd/mm/yyyy" class="form-control dDate date-readonly" value="" readonly/>
+                                            <input type="text" id="txtDate" name="dDate" placeholder="dd-mm-yyyy" v-model="dateDeparture" class="form-control dDate date-readonly" />
                                             <small><em>Định dạng: dd-mm-yyyy</em></small>
                                         </div>
                                     </div>
@@ -89,9 +80,6 @@
                     </div>
                 </div>
                 <!-- end tabs panes -->
-            </div>
-            <div class="col-12 col-md-7">
-
             </div>
         </div>
         <div id="body-contents">
@@ -272,8 +260,235 @@
                         </div>
                     </div>
                 </div>
+                <div class="steps3">
+                    <div id="body-pay">
+                        <div class="note">
+                            <b>Lưu ý !</b>Nếu quý khách chọn hình thức thanh toán chuyển khoản, vui lòng chuyển khoản tiền vé trong vòng <b>12 tiếng</b> kể từ thời gian đặt vé.
+                            Để việc chuyển khoản được diễn ra nhanh chóng và tiện lợi, quý khách có thể ra ATM hoặc quầy giao dịch của ngân hàng VietinBank hoặc Agribank để chuyển khoản trực tiếp vào tài khoản Phương Trang.
+                            Thời gian chuyển khoản: <b>08:00 đến 17:00 trong ngày</b>,<b>không nhận đặt vé chuyển khoản vào các ngày thứ Bảy, Chủ nhật</b>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="panel">
+                                        <p class="text-upercase text-center text-title">Chọn cổng thanh toán</p>
+                                        <div class="payment">
+                                            <ul class="row">
+                                                <li class="col-12 col-md-4">
+                                                    <div class="text-center panel-pay">
+                                                        <p class="text-center">Thanh toán thẻ tín dụng/ghi nợ</p>
+                                                        <div class="payment-img">
+                                                            <img src="/Assets/Client1/images/visa-card.gif" alt="Thanh toán thẻ tín dụng/ghi nợ" class="img-fluid">
+                                                        </div>
+                                                        <input type="radio" />
+                                                    </div>
+                                                </li>
+                                                <li class="col-12 col-md-4">
+                                                    <div class="text-center panel-pay">
+                                                        <p class="text-center">Thanh toán thẻ ATM Nội địa</p>
+                                                        <div class="payment-img">
+                                                            <img src="/Assets/Client1/images/nganluong.vn.png" alt="Thanh toán thẻ ATM Nội địa" class="img-fluid">
+                                                        </div>
 
+                                                        <input type="radio" />
+                                                    </div>
+                                                </li>
+                                                <li class="col-12 col-md-4">
+                                                    <div class="text-center panel-pay">
+                                                        <p class="text-center">Thanh toán thẻ ATM Nội địa</p>
+                                                        <div class="payment-img">
+                                                            <img src="/Assets/Client1/images/napas.jpg" alt="Thanh toán thẻ ATM Nội địa" class="img-fluid">
+                                                        </div>
+                                                        <input type="radio" class="text-center" />
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <div class="col-12">
+                                                <button type="button" class="btn btn-primary btn-block btn-flat btn-booking" id="js-btn-prev"><< Quay lại</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="panel">
+                                        <p class="text-upercase text-center text-title">Thông tin đặt vé</p>
+                                        <div class="info">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Tuyến:</td>
+                                                        <td colspan="3"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Ngày đi:</td>
+                                                        <td></td>
+                                                        <td>Ghế/giường:</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Điểm lên xe</td>
+                                                        <td colspan="3"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Họ và tên:</td>
+                                                        <td colspan="3"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Email:</td>
+                                                        <td></td>
+                                                        <td>Số điện thoại:</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Thành tiền:</td>
+                                                        <td colspan="3"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-primary btn-block btn-flat btn-booking">Thanh toán</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<script language="javascript">
+    $(document).ready(function () {
+        $("#txtDate").datepicker({
+            dateFormat:'dd/mm/yy',
+            minDate: 1,
+            maxDate: 30,
+        });
+        $('#js-booking').click(function () {
+            var a = $("#txtDate").datepicker({ dateFormat: 'yy-mm-dd' }).val();
+            $('#date').html(a);
+        });
+
+    });
+</script>
+<script>
+    new Vue({
+        el: '#body-top',
+        data () {
+            return {
+                selected1: 'A',
+                selected2: 'A',
+                selected3: 'A',
+                timeDepart: [],
+                objectIndex: 0,
+                id_route: 'A',
+                dateDeparture: '', //this.formatDate(),
+                items: [],
+                //Driver: {
+                //    id_driver: "id_driver",
+                //    name: "name",
+                //    birth: "birth",
+                //    add: "add",
+                //    phone: "phone",
+                //    note: "note",
+                //    flag: "flag",
+                //}
+            }
+        },
+        mounted () {
+            this.getUser();
+            this.getUser1();
+            this.getSeat();
+        },
+        methods: {
+            formatDate() {
+                var today = new Date();
+                var day = today.getDate();
+                var month = today.getMonth() + 1;
+                var year = today.getFullYear();
+                if (day < 10) {
+                    day = '0' + dd;
+                }
+                if (month < 10) {
+                    month = '0' + month;
+                }
+                return [year, month, day].join('-');
+            },
+            //getID(id) {
+            //    axios.get('http://localhost:54429/User/GetData/', { params: { id } })
+            //       .then(response => {
+            //           if (response.data.success) {
+            //               this.items = response.data.content;
+            //           }
+            //           else {
+            //               callToast("Không thành công", response.data.message, "error");
+            //           }
+            //       })
+            //},
+            getUser() {
+                axios.get('http://localhost:3000/station')
+                   .then(response => {
+                       //this.items = [];
+                       //if (response.data.success) {
+                       //    this.items = [];
+                       //    this.items = response.data.data.name;
+                       //}
+                       //else {
+                       //    callToast("Không thành công", response.data.message, "error");
+                       //}
+                   })
+            },
+            getUser1() {
+                axios.get('http://localhost:3000/station')
+                   .then(response => {
+                       //this.items = [];
+                       this.items = response.data;
+                       //if (response.data.success) {
+                       //    this.items = [];
+                       //    this.items = response.data.data.name;
+                       //}
+                       //else {
+                       //    callToast("Không thành công", response.data.message, "error");
+                       //}
+                   })
+            },
+            getUser2() {
+                axios.get('http://localhost:3000/st1/' + this.selected1 + '/st2/' + this.selected2 + '')
+                   .then(response => {
+                       //this.items = [];
+                       this.items = response.data;
+                       //if (response.data.success) {
+                       //    this.items = [];
+                       //    this.items = response.data.data.name;
+                       //}
+                       //else {
+                       //    callToast("Không thành công", response.data.message, "error");
+                       //}
+                   })
+            },
+            getUser3() {
+                axios.get('http://localhost:3000/st1/' + this.selected1 + '/st2/' + this.selected2 + '/dep/' + this.dateDeparture + '')
+                   .then(response => {
+                       this.items = response.data;
+                       this.timeDepart = response.data.data1;
+                       this.id_route = response.data.data1[0].id_route;
+                       //}
+                   })
+            },
+            getSeat() {
+                axios.get('http://localhost:3000/seat/' + this.id_route + '/date/' + this.dateDeparture + '/time/' + this.selected3 + '')
+                   .then(response => {
+                       console.log(response.data);
+
+                       //}
+                   })
+            },
+        },
+    })
+</script>

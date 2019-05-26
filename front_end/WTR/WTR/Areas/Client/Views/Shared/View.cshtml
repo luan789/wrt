@@ -11,11 +11,18 @@
     <link rel="stylesheet" type="text/css" href="~/Assets/Client1/dist/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="/Assets/Client1/css/pay.css">
     <link rel="stylesheet" type="text/css" href="~/Assets/Client1/css/seat.css" />
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons'>
+    <link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="Stylesheet" type="text/css" />
 
     <script type="text/javascript" src="/Assets/Client1/js/jquery.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js'></script>
+
+    <script src="//unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="/Assets/Client1/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/Assets/Client1/dist/fontawesome/js/all.min.js"></script>
-    <script type="text/javascript" src="/Assets/Client1/js/script.js"></script>
+    <script type="text/javascript" src="~/Assets/Client1/js/JavaScript.js"></script>
     <script type="text/javascript" src="/Assets/Client1/js/booking.js"></script>
     <script type="text/javascript" src="/Assets/Client1/js/WTR-I-Passenger.js"></script>
     <script src="~/Assets/Client1/dist/slick/slick.js"></script>
@@ -25,8 +32,8 @@
     <section>
         <!-- Navigation -->
         <nav class="navbar navbar-expand-xl navbar-dark bg-header">
-            <div class="container">
-                <a class="navbar-brand" href="index.html"><img src="assets/images/logo.png" alt="logo" width="90"></a>
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html"><img src="~/Assets/Client1/images/logo.png" alt="logo" width="90"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContentXL" aria-controls="navbarSupportedContentXL" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -63,6 +70,161 @@
             </div>
         </nav><!-- end nav -->
         @RenderBody();
+        <div class="container">
+            <div id="star-city" class="content">
+                <h4 class="text-upercase"><span><i class="fas fa-map-marker-alt"></i></span> Các điểm khởi hành</h4>
+                <div>
+                    <ul>
+
+                        <li>
+                            <div class="card card-width">
+                                <div class="overflow-hidden">
+                                    <img src="/Assets/Client1/images/VungTau.jpg" class="card-img-top" alt="Vũng Tàu">
+                                </div>
+                                <div class="card-body card-body-edit">
+                                    <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Vũng Tàu</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: HCM, Nha Trang, ...</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card card-width">
+                                <div class="overflow-hidden">
+                                    <img src="/Assets/Client1/images/ThanhHoa.jpg" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body card-body-edit">
+                                    <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Thanh Hóa</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Huế, HCM</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card card-width">
+                                <div class="overflow-hidden">
+                                    <img src="/Assets/Client1/images/PhanThiet.jpg" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body card-body-edit">
+                                    <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Phan Thiết</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Vũng Tàu, HCM</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card card-width">
+                                <div class="overflow-hidden">
+                                    <img src="/Assets/Client1/images/NhaTrang.jpg" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body card-body-edit">
+                                    <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Nha Trang</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Vũng Tàu, HCM</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card card-width">
+                                <div class="overflow-hidden">
+                                    <img src="/Assets/Client1/images/LongAn.jpg" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body card-body-edit">
+                                    <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Long An</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Vũng Tàu, Cần Thơ, Bến Tre, HCM</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card card-width">
+                                <div class="overflow-hidden">
+                                    <img src="/Assets/Client1/images/Hue.jpg" class="card-img-top" alt="...">
+                                </div>
+
+                                <div class="card-body card-body-edit">
+                                    <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Huế</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Thanh Hóa, Nha Trang, Phan Thiết,..</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card card-width">
+                                <div class="overflow-hidden">
+                                    <img src="/Assets/Client1/images/HCM.png" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body card-body-edit">
+                                    <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Hồ Chí Minh</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Vũng Tàu, Nha Trang, Phan Thiết,...</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card card-width">
+                                <div class="overflow-hidden">
+                                    <img src="/Assets/Client1/images/HaNoi.jpg" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body card-body-edit">
+                                    <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Hà Nội</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Thanh Hóa, Huế</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card card-width">
+                                <div class="overflow-hidden">
+                                    <img src="/Assets/Client1/images/DaNang.png" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body card-body-edit">
+                                    <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Đà Nẵng</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Vũng Tàu, Nha Trang, Phan Thiết, HCM,...</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card card-width">
+                                <div class="overflow-hidden">
+                                    <img src="/Assets/Client1/images/DaLat.jpg" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body card-body-edit">
+                                    <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Đà Lạt</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Vũng Tàu, HCM</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card card-width">
+                                <div class="overflow-hidden">
+                                    <img src="/Assets/Client1/images/CanTho.jpg" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body card-body-edit">
+                                    <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Cần Thơ</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Bến Tre</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card card-width">
+                                <div class="overflow-hidden">
+                                    <img src="/Assets/Client1/images/BenTre.png" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body card-body-edit">
+                                    <p><span class="card-icon"><i class="fas fa-bus"></i></span> Điểm khởi hành: <span class="text-upercase card-text">Bến Tre</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-phone-volume"></i></span> Hotline: <span class="text-upercase card-text">0996 500 500</span></p>
+                                    <p><span class="card-icon"><i class="fas fa-map-marker-alt"></i></span> Điểm đến: Cần Thơ, HCM</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
     <script>
         var firstSeatLabel = 1;
