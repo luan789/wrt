@@ -233,6 +233,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Client1\css\DatePicker.css" />
     <Content Include="Assets\Client1\css\jquery.seat-charts.css" />
     <Content Include="Assets\Client1\css\pay.css" />
     <Content Include="Assets\Client1\css\seat.css" />
