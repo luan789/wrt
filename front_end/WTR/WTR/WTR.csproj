@@ -217,6 +217,7 @@
     <Compile Include="Areas\Client\ClientAreaRegistration.cs" />
     <Compile Include="Areas\Client\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Client\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Client\Controllers\UserController.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\Encryptor.cs" />
     <Compile Include="Common\UserLogin.cs" />
@@ -297,6 +298,8 @@
     <Content Include="Assets\Client1\sass\style.scss" />
     <Content Include="Assets\Client1\sass\seat.scss" />
     <Content Include="Areas\Client\Views\Default\Index.cshtml" />
+    <Content Include="Areas\Client\Views\User\Index.cshtml" />
+    <Content Include="Areas\Client\Views\User\Register.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -351,6 +354,8 @@
     <Folder Include="Assets\Admin\js\" />
     <Folder Include="Assets\Admin\scss\" />
     <Folder Include="Assets\Admin\vendor\" />
+    <Folder Include="Assets\Client1\Contents\" />
+    <Folder Include="Assets\Client1\Content\" />
     <Folder Include="Assets\Client1\dist\css\" />
     <Folder Include="Assets\Client1\dist\fontawesome\" />
     <Folder Include="Assets\Client1\dist\js\" />
