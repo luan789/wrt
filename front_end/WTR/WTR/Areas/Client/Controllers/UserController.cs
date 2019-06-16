@@ -34,5 +34,8 @@ namespace WTR.Areas.Client.Controllers
                 return Json(new { success = false, content = "null", message = "Thao tác tải dữ liệu không thành công. Vui lòng thực hiện lại thao tác", log = ex.ToString() });
             }
         }
+        
+
+        
     }
 }

@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Areas/Client/Views/Shared/View.cshtml";
+}
+
+
+
+<div id="user-infomations" class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-sm-12 col-xs-12">
+            <h3 class="text-uppercase">Thông tin cá nhân</h3>
+
+            <table class="table">
+                <tr>
+                    <td>Họ tên</td>
+                    <td>{{name}}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{{email}}</td>
+                </tr>
+                <tr>
+                    <td>Điện thoại</td>
+                    <td>{{phone}}</td>
+                </tr>                                                                                                                                                                    
+            </table>
+            <p style="padding:10px">Đánh giá dịch vụ website</p>
+            <textarea cols="71" style="border:solid 1px;padding:10px" v-model="message" placeholder="Đánh giá dịch vụ của website...."></textarea><br />
+            <button class="btn btn-outline-dark pull-right float-right" v-on:click="suggestion()">Gửi</button>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-sm-12 col-xs-12">
+            <h3 class="text-uppercase">Lịch sử đặt vé</h3>
+
+            <table class="table">
+                <tr>
+
+                    <td>Chuyến đi</td>
+                    <td>Ngày đặt</td>
+                    <td>Ghế ngồi</td>
+                    <td>Trạng thái</td>
+                    <td>###</td>
+                </tr>
+                <tr v-for="item in items">
+
+                    <td>{{item.schedule}}</td>
+                    <td>{{item.departure}}</td>
+                    <td>{{item.number_seat}}</td>
+                    <td>{{item.status}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var _Token = '@ViewBag.Token';
+    new Vue({
+        el: '#user-infomations',
+        data() {
+            return {
+                email: null,
+                phone: null,
+                name: null,
+
+                message: null,
+
+                ID: null,
+                schedule: null,
+                date: null,
+                seat: null,
+                status: null,
+
+                token: _Token,
+                items: [],
+            }
+        },
+
+        methods: {
+            checkToken() {
+                const config = {
+                    headers: {
+                        'Authorization': this.token
+                    }
+                }
+                console.log(this.token);
+                if (this.Token === "") {
+                    alert("Bạn cần phải đăng nhập để được tiếp tục !!");
+
+                } else {
+                    axios.get('http://localhost:3000/validate', config)
+                         .then(response => {
+                             this.name = response.data.data[0].name;
+                             this.phone = response.data.data[0].phone;
+                             this.email = response.data.data[0].e_mail;
+                             console.log(response.data.data[0].e_mail);
+                         })
+                }
+
+            },
+            history() {
+                 const config = {
+                     headers: {
+                         'Authorization': this.token
+                     }
+                 }
+                 axios.get('http://localhost:3000/history', config)
+                 .then(response => {
+                     this.items = [];
+                     this.items = response.data.data;
+                     this.ID = response.data.data.id_ticket;
+                     this.schedule = response.data.data.schedule;
+                     this.date = response.data.data.departure;
+                     this.seat = response.data.data.number_seat;
+                     this.status = response.data.data.status;
+                     console.log(this.items);
+                 })
+            },
+            suggestion() {
+                const config = {
+                    headers: {
+                        'Authorization': this.token
+                    }
+                }
+                axios.get('http://localhost:3000/submitSuggestion/' + this.message + '', config)
+                .then(response=> {
+                    this.items = response.data;
+                    console.log(this.message);
+
+                })
+            },
+        },
+        mounted() {
+            this.history();
+            this.checkToken();
+
+        },
+    });
+</script>
+
+

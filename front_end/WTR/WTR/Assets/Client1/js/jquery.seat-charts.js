@@ -430,13 +430,13 @@
 			var $container = (legend.node || $('<div></div>').insertAfter(fn))
 				.addClass('seatCharts-legend');
 				
-			var $ul = $('<ul></ul>')
+			var $ul = $('<p></p>')
 				.addClass('seatCharts-legendList')
 				.appendTo($container);
 			
 			$.each(legend.items, function(index, item) {
 				$ul.append(
-					$('<li></li>')
+					$('<span></span>')
 						.addClass('seatCharts-legendItem')
 						.append(
 							$('<div></div>')

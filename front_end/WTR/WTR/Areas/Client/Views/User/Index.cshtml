@@ -93,7 +93,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                         <div id="login-form-left" class="border clearfix">
                             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-ms-12 col-lg-offset-2 col-md-offset-2">
-                                <h3 class="text-uppercase text-center">Tôi đã đăng ký tài khoản</h3>
+                                <h3 class="text-uppercase text-center" style="margin:10px">Tôi đã đăng ký tài khoản</h3>
 
                                 <div  class="form-horizontal">
                                     <div class="form-group">
@@ -107,7 +107,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                                     <div class="form-group">
                                         <a href="/User/ForgetPassword">Quên mật khẩu?</a>
-                                        <button class="btn btn-primary pull-right" v-on:click="getPass()">
+                                        <button class="btn btn-primary pull-right" v-on:click="SignIn()">
                                             Đăng nhập
                                         </button>
                                     </div>
@@ -157,27 +157,49 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </body>
 </html>
 <script>
+
     new Vue({
         el: '#page',
         data() {
             return {
                 email: '',
                 password: '',
+                token:null,
                 items:[],
             }
         },
+        
         methods: {
-            getPass() {
+            SignIn() {
                 console.log(this.email);
-                //axios.get('')
-                //.then(response => {
-                //    this.items = response.data;
-                //})
-            }            
+                const data1 = {
+                    username:this.email,
+                    password:this.password,
+                }
+                const config={
+                    headers: {
+                        'Content-Type':'application/json'
+                    }
+                }
+                axios.post('http://localhost:3000/login', data1,config)
+                .then(response => {
+
+                    if (response.data.data === 'fail') {
+                        console.log(response.data.data);
+                        alert("Login fail");
+                    } else {
+                        console.log(response.data.success);
+                        this.items = response.data.success;
+                        this.token = response.data.success;
+                        window.location = '/Client/Home/Index?token=' + this.token;
+                    }
+                })
+            },
+
         },
         mounted() {
-            this.getPass();
-        }
+            //this.SignIn();
+        },
     })
 </script>
 

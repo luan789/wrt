@@ -92,39 +92,41 @@
 
 
             <div class="container" id="login-page">
-                <div id="body-register" class="row">                   
+                <div id="body-register" class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-ms-12">
                         <div id="register-form-wrapper" class="border padding 10 clearfix">
-                            <form action="/User/Register" method="post" class="py-3 px-3">
+                            <form class="py-3 px-3">
                                 <input name="__RequestVerificationToken" type="hidden" value="y1TgFSk7PZHQTXyR2GM0-A_CpAn1Vbpbtryy7Hmn3xaUiHBG5r_CwrrNV5MefBQVigZxNOwy5vtByLignkKgf_SkH1U1" />                    <h3 class="text-uppercase">Đăng ký</h3>
 
                                 <div class="form-group">
                                     <label for="">Họ tên <span class="text-primary">*</span></label>
-                                    <input class="form-control" id="FullName" name="FullName" placeholder="Điền họ tên" type="text" value="" />
+                                    <input class="form-control" id="FullName" name="FullName" placeholder="Điền họ tên" type="text" value="" v-model="name" />
                                 </div>
                                 <div class="form-group">
                                     <label for="">Email <span class="text-primary">*</span></label>
-                                    <input class="form-control" id="Email" name="Email" placeholder="Điền địa chỉ email" type="email" value="" />
-                                </div>
-                                <div class="form-group">  
-                                        <label for="">Mật khẩu <span class="text-primary">*</span></label>
-                                        <input class="form-control" id="Password" name="Password" placeholder="Điền mật khẩu" type="password" />  
-                                </div>
-                                <div class="form-group">    
-                                        <label for="">Số di động <span class="text-primary">*</span></label>
-                                        <input class="form-control" id="Phone" name="Phone" placeholder="Điền số di động" type="text" value="" />    
+                                    <input class="form-control" id="Email" name="Email" placeholder="Điền địa chỉ email" type="email" value="" v-model="email" />
                                 </div>
                                 <div class="form-group">
-                                        <label for="">Địa chỉ</label>
-                                        <input class="form-control" id="Address" name="Address" placeholder="Điền địa chỉ liên hệ" type="text" value="" />                                    
+                                    <label for="">Mật khẩu <span class="text-primary">*</span></label>
+                                    <input class="form-control" id="Password" name="Password" placeholder="Điền mật khẩu" type="password" v-model="password" />
                                 </div>
-                                <div class="form-group clearfix">
-                                    <button class="btn btn-primary pull-right float-right">HOÀN TẤT</button>
+                                <div class="form-group">
+                                    <label for="">Số di động <span class="text-primary">*</span></label>
+                                    <input class="form-control" id="Phone" name="Phone" placeholder="Điền số di động" type="text" value="" v-model="phone" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Địa chỉ</label>
+                                    <input class="form-control" id="Address" name="Address" placeholder="Điền địa chỉ liên hệ" type="text" value="" v-model="add" />
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary pull-right float-right" v-on:click="Register()">HOÀN TẤT</button>
+                                    
                                 </div>
                                 <p class="clearfix">
                                     <small class="pull-right float-right"><span class="text-primary">*</span> Mục bắt buộc </small>
                                 </p>
                             </form>
+                            
                         </div>
                     </div>
                 </div>
@@ -144,55 +146,55 @@
     <script type="text/javascript" src="/Assets/Client1/bower_components/moment/moment-with-locales.min.js"></script>
 
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            //Get province
-            $.ajax({
-                method: "POST",
-                url: "https://api5.futabus.vn/api/queryprovince"
-            }).done(function (msg) {
-                var p = $("#ProvinceId").empty();
-                p.append($("<option></option>").val(0).html("Chọn tỉnh/tp"));
-                if (msg.Status === 1) {
-                    $.each(msg.Data, function (i, v) {
-                        p.append($("<option></option>").val(v.Id).html(v.Name));
-                    }); // there was also a ) missing here
-                } else {
-                    p.append($("<option></option>").val(31).html("TP.Hồ Chí Minh"));
-                }
-                p.val(p.attr('datavalue'));
-                p.trigger('change');
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+                //Get province
+                $.ajax({
+                    method: "POST",
+                    url: "https://api5.futabus.vn/api/queryprovince"
+                }).done(function (msg) {
+                    var p = $("#ProvinceId").empty();
+                    p.append($("<option></option>").val(0).html("Chọn tỉnh/tp"));
+                    if (msg.Status === 1) {
+                        $.each(msg.Data, function (i, v) {
+                            p.append($("<option></option>").val(v.Id).html(v.Name));
+                        }); // there was also a ) missing here
+                    } else {
+                        p.append($("<option></option>").val(31).html("TP.Hồ Chí Minh"));
+                    }
+                    p.val(p.attr('datavalue'));
+                    p.trigger('change');
+                });
+
+                $("#ProvinceId").on("change", function (e) {
+                    var p = parseInt($("#ProvinceId > option:selected").val());
+                    if (isNaN(p)) {
+                        p = 0;
+                    }
+
+                    var c = $("#CityId").empty();
+                    c.append($("<option></option>").val(0).html("Chọn quận/huyện"));
+
+                    if (p > 0) {
+                        $.ajax({
+                            method: "POST",
+                            url: "https://api5.futabus.vn/api/querycity",
+                            data: { ProvinceId: p }
+                        }).done(function (msg) {
+                            if (msg.Status === 1) {
+                                $.each(msg.Data, function (i, v) {
+                                    c.append($("<option></option>").val(v.Id).html(v.Name));
+                                }); // there was also a ) missing here
+                            } else {
+                                c.append($("<option></option>").val(391).html("Quận 5"));
+                            }
+                            c.val(c.attr('datavalue'));
+                        });
+                    }
+
+                });
             });
-
-            $("#ProvinceId").on("change", function (e) {
-                var p = parseInt($("#ProvinceId > option:selected").val());
-                if (isNaN(p)) {
-                    p = 0;
-                }
-
-                var c = $("#CityId").empty();
-                c.append($("<option></option>").val(0).html("Chọn quận/huyện"));
-
-                if (p > 0) {
-                    $.ajax({
-                        method: "POST",
-                        url: "https://api5.futabus.vn/api/querycity",
-                        data: { ProvinceId: p }
-                    }).done(function (msg) {
-                        if (msg.Status === 1) {
-                            $.each(msg.Data, function (i, v) {
-                                c.append($("<option></option>").val(v.Id).html(v.Name));
-                            }); // there was also a ) missing here
-                        } else {
-                            c.append($("<option></option>").val(391).html("Quận 5"));
-                        }
-                        c.val(c.attr('datavalue'));
-                    });
-                }
-
-            });
-        });
-    </script>
+        </script>*@
 
     <!-- GA -->
 
@@ -202,3 +204,45 @@
 
 </body>
 </html>
+<script>
+    new Vue({
+        el: '#page',
+        data() {
+            return {
+                email: '',
+                password: '',
+                phone: '',
+                name: '',
+                add: '',
+                items: [],
+                User: {
+                    name: '',
+                    phone: '',
+                    email: '',
+                    password:'',
+                }
+            }
+        },
+        methods: {
+            Register() {
+                //console.log(this.email);
+                //const data1 = {
+                //    username: this.email,
+                //    password: this.password,
+                //}
+                //const config = {
+                //    headers: {
+                //        'Content-Type': 'application/json'
+                //    }
+                //}
+                axios.get('http://localhost:3000/signup/name/' + this.name + '/phone/' + this.phone + '/email/' + this.email + '/pass/' + this.password + '')
+                .then(response => {
+                    this.items = response.data;
+                })
+            }
+        },
+        mounted() {
+
+        }
+    })
+</script>

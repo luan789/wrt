@@ -1,18 +1,28 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Client/Views/Shared/View.cshtml";
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="/Assets/Client1/Profile/css/sb-admin-2.min.css" rel="stylesheet" />
+    <link href="/Assets/Client1/Profile/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
 }
 
 
+
+
 <div class="container">
+
     <div id="body-top">
+        
         <div class="row booking">
+
             <div class="col-12">
+
                 <!-- nav tabs -->
                 <div class="row v-tabs">
                     <div role="presentation" class="col-6 active"><a href="#booking" class="" aria-controls="home" role="tab" data-toggle="tab">MUA VÉ XE TRỰC TUYẾN</a></div>
                     <div class="col-6"><a href="#">HƯỚNG DẪN ĐẶT VÉ</a></div>
+
                 </div>
                 <!-- end nav tabs -->
                 <!-- tabs panes -->
@@ -25,8 +35,8 @@
                                         <label>Điểm khởi hành</label>
                                         <div class="controls">
                                             <i class="fas fa-bus icon"></i>
-                                            <select name="idOrigin" id="idOrigin" class="form-control selectpicker" v-model="selected1">
-                                                <option v-for="item in items.data" v-bind:value="item.id_station">{{item.name}}</option>
+                                            <select name="idOrigin" id="idOrigin" class="form-control selectpicker" v-model="selected1" v-on:click="getdata_From()">
+                                                <option v-for="item in items.data" v-bind:value="item.id_station" value="{{item.name}}">{{item.name}}</option>
                                             </select>
                                         </div>
 
@@ -38,8 +48,8 @@
                                         <div class="controls">
                                             <i class="fa fa-bus icon"></i>
 
-                                            <select name="idDest" id="idDest" class="form-control  selectpicker" v-model="selected2">
-                                                <option v-for="item in items.data" v-bind:value="item.id_station">{{item.name}}</option>
+                                            <select name="idDest" id="idDest" class="form-control  selectpicker" v-model="selected2" v-on:click="getdata_To()">
+                                                <option v-for="item in items.data" v-bind:value="item.id_station" value="{{item.name}}">{{item.name}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -51,8 +61,7 @@
                                     <div class="form-group">
                                         <label for="">Ngày khởi hành</label>
                                         <div class="controls">
-                                            <input type="text" id="txtDate" v-model="dateDeparture" name="dDate" placeholder="dd/mm/yyyy" class="form-control dDate date-readonly" value="" readonly />
-                                            {{dateDeparture}}
+                                            <input type="text" id="txtDate" v-model="dateDeparture" name="dDate" placeholder="yyyy/mm/dd" class="form-control dDate date-readonly" readonly />
                                             @*<v-menu>
                                                     <v-text-field :value="dateDeparture" id="" slot="activator" label="Date time" prepend-icon="date-range" readonly></v-text-field>
                                                     <v-date-picker v-model="" ></v-date-picker>
@@ -76,7 +85,7 @@
                             <div class="row">
                                 <div class="col-md-6 col-12">
                                     <button type="button" class="btn btn-primary btn-block btn-flat btn-booking" id="js-booking" v-on:click="getUser3()">Mua vé</button>
-
+                                    <button id="pf" type="button" class="btn btn-primary btn-block btn-flat btn-booking" style="display: inline-block" v-on:click="moveToken()">Profile</button>
                                 </div>
                             </div>
                         </form>
@@ -109,7 +118,7 @@
                         <div class="col-12 col-md-5">
                             <div class="tab-contents">
                                 <div class="info-booking">
-                                    <p class="text-center text-title text-upercase" v-for="item in items.data">{{item.note}}<br /><span id="date" style="text-align:center">12/12/2012</span></p>
+                                    <p class="text-center text-title text-upercase"><br /><span id="date" style="text-align:center"></span></p>
                                     <div class="tablepanel tab-pane active">
                                         <form class="form">
                                             <div class="row">
@@ -117,8 +126,8 @@
                                                     <div class="">
                                                         <label>Tuyến xe</label>
                                                         <p class="text-upercase">
-                                                            <span class="float-left"></span><span class="float-right">
-                                                                <span v-for="item in timeDepart" v-bind:value="item.price">{{item.price}}</span>
+                                                            <span class="float-left">{{from}} --- {{to}}</span><span class="float-right">
+                                                                <span v-for="item in timeDepart.slice(0,1)" v-model="Price">{{item.price}}</span>
                                                             </span>
                                                         </p>
                                                     </div>
@@ -129,25 +138,24 @@
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label for="">Giờ khởi hành</label>
-                                                        <div class="controls">
+                                                        <div class="controls" id="gkh">
                                                             <i class="far fa-clock icon"></i>
-                                                            <select name="idDest" id="idDest" class="form-control  selectpicker" v-model="selected3" v-on:click="getSeat();Jquery()">
-                                                                <option v-for="item in timeDepart" v-on:click="Jquery()">{{item.departure}}</option>
+                                                            <select name="idDest" id="select" class="form-control  selectpicker" v-model="selected3" v-on:click="getSeat();Jquery();changeModelSeat()">
+                                                                <option v-for="item in timeDepart" v-on:click="Jquery();changeModelSeat()">{{item.departure}}</option>
                                                             </select>
                                                         </div>
                                                     </div>
 
                                                 </div>
-
                                             </div>
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="form-group">
-                                                        <label for="">Điêm đón</label>
+                                                        <label for="">Điểm đón</label>
                                                         <div class="controls">
                                                             <i class="fas fa-map-marker-alt icon"></i>
-                                                            <select name="idDest" id="idDest" class="form-control  selectpicker">
-                                                                <option value="">Chọn điểm đón</option>
+                                                            <select name="idDest" id="substation" class="form-control  selectpicker" v-model="selected4" v-on:click="getAdd()">
+                                                                <option v-for="item in items" v-on:click="getAdd()">{{item.add}}</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -161,7 +169,7 @@
 
                                                 </div>
                                                 <div class="col-md-6 col-12">
-                                                    <button type="button" class="btn btn-primary btn-block btn-flat btn-booking " id="js-btn-next">>> Tiếp tục</button>
+                                                    <button type="button" class="btn btn-primary btn-block btn-flat btn-booking " id="js-btn-next" v-on:click="checkToken()" data-toggle="modal" data-target="#frm_Login"> Tiếp tục >> </button>
 
                                                 </div>
                                             </div>
@@ -172,20 +180,21 @@
                         </div>
                         <div class="col-12 col-md-7">
                             <!-- seat -->
-                            <div class="wrapper tab-content">
+                            <div class="wrapper tab-content" id="Model">
                                 <div class="wr-top">
-                                    <span class="float-left">Số ghế: <span id="counter">0</span></span><span class="float-right">Tổng tiền: <span id="total">0</span>vnd</span>
-                                    @*<div class="booking-details">
-                                        <h2>Booking Details</h2>
-                                        <h3> Selected Seats (<span id="counter">0</span>):</h3>
-                                        <ul id="selected-seats"></ul>
-                                        Total: <b>$<span id="total">0</span></b>
-                                        <button class="checkout-button">Checkout &raquo;</button>
-                                        <div id="legend"></div>
-                                    </div>*@
-                                </div>
-                                <div class="">
                                     
+                                    <span class="float-left">Số ghế:  <span id="counter">0</span></span><span class="float-right">Tổng tiền: <span id="total" v-model="Total">{{Total}}</span>vnd</span>
+                                    @*<div class="booking-details">
+                                            <h2>Booking Details</h2>
+                                            <h3> Selected Seats (<span id="counter">0</span>):</h3>
+                                            <ul id="selected-seats"></ul>
+                                            Total: <b>$<span id="total">0</span></b>
+                                            <button class="checkout-button">Checkout &raquo;</button>
+                                            <div id="legend"></div>
+                                        </div>*@
+                                </div>
+                                <div class="" id="load_div">
+
                                     <div id="seat-map">
                                         <div class="front-indicator text-center">Sơ đồ ghế</div>
 
@@ -222,7 +231,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <label>Họ tên<span class="text-danger">*</span></label>
-                                            <input type="email" class="form-control" id="js-name" aria-describedby="emailHelp" placeholder="Họ tên khách hàng">
+                                            <input type="email" class="form-control" id="js-name" aria-describedby="emailHelp" v-model="name" placeholder="Họ tên khách hàng">
                                             <p id="val-name" class="text-danger text-note"></p>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -233,20 +242,13 @@
                                 <div class="row group-step">
                                     <div class="col-12 col-md-6">
                                         <label>Số điện thoại<span class="text-danger">*</span></label>
-                                        <input type="" class="form-control" onKeyPress="return isNumberKey(event)" id="js-num" aria-describedby="number" placeholder="0345194003">
+                                        <input type="" class="form-control" onKeyPress="return isNumberKey(event)" id="js-num" aria-describedby="number" v-model="phone" placeholder="0345194003">
                                         <p id="val-num" class="text-danger text-note"></p>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label>Email<span class="text-danger">*</span></label>
-                                        <input type="email" class="form-control" id="js-email" aria-describedby="emailHelp" placeholder="name@example.com">
+                                        <input type="email" class="form-control" id="js-email" aria-describedby="emailHelp" v-model="email" placeholder="name@example.com">
                                         <p id="val-mail" class="text-danger text-note"></p>
-                                    </div>
-                                </div>
-                                <div class="row group-step">
-                                    <div class="col-12">
-                                        <label>Địa chỉ<span class="text-danger ">*</span></label>
-                                        <textarea class="form-control" aria-label="With textarea" id="js-add"></textarea>
-                                        <p id="val-add" class="text-danger text-note"></p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -255,7 +257,7 @@
 
                                     </div>
                                     <div class="col-md-6 col-12">
-                                        <button type="button" class="btn btn-primary btn-block btn-flat btn-booking " onclick="checkVal()" id="js-btn-next">>> Tiếp tục</button>
+                                        <button type="button" class="btn btn-primary btn-block btn-flat btn-booking " onclick="checkVal()" id="js-btn-next"> Tiếp tục >></button>
 
                                     </div>
                                 </div>
@@ -275,9 +277,7 @@
                 <div class="steps3">
                     <div id="body-pay">
                         <div class="note">
-                            <b>Lưu ý !</b>Nếu quý khách chọn hình thức thanh toán chuyển khoản, vui lòng chuyển khoản tiền vé trong vòng <b>12 tiếng</b> kể từ thời gian đặt vé.
-                            Để việc chuyển khoản được diễn ra nhanh chóng và tiện lợi, quý khách có thể ra ATM hoặc quầy giao dịch của ngân hàng VietinBank hoặc Agribank để chuyển khoản trực tiếp vào tài khoản Phương Trang.
-                            Thời gian chuyển khoản: <b>08:00 đến 17:00 trong ngày</b>,<b>không nhận đặt vé chuyển khoản vào các ngày thứ Bảy, Chủ nhật</b>
+                            <b>Thanh toán qua số tài khoản: 9245 1563 5883</b>
                         </div>
                         <div>
                             <div class="row">
@@ -330,36 +330,36 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>Tuyến:</td>
-                                                        <td colspan="3"></td>
+                                                        <td colspan="3">{{from}}---{{to}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Ngày đi:</td>
-                                                        <td></td>
-                                                        <td>Ghế/giường:</td>
-                                                        <td></td>
+                                                        <td>{{dateDeparture}}</td>
+                                                        <td>Ghế:</td>
+                                                        <td>{{id_carts[0]}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Điểm lên xe</td>
-                                                        <td colspan="3"></td>
+                                                        <td colspan="3">{{selected4}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Họ và tên:</td>
-                                                        <td colspan="3"></td>
+                                                        <td colspan="3">{{name}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Email:</td>
-                                                        <td></td>
+                                                        <td>{{email}}</td>
                                                         <td>Số điện thoại:</td>
-                                                        <td></td>
+                                                        <td>{{phone}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Thành tiền:</td>
-                                                        <td colspan="3"></td>
+                                                        <td colspan="3">{{Total}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                             <div class="col-12">
-                                                <button type="submit" class="btn btn-primary btn-block btn-flat btn-booking">Thanh toán</button>
+                                                <button type="submit" class="btn btn-primary btn-block btn-flat btn-booking" v-on:click="createTicket()">Thanh toán</button>
 
                                             </div>
                                         </div>
@@ -374,16 +374,43 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="frm_Login" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p>Đăng nhập</p>
+                </div>
+                <div class="modal-body">
+                    <div class="col-12 mb-2">
+                        <input type="text" id="username" class="form-control" v-model="email_Form" placeholder="Email" aria-label="email" />
+                    </div>
+                    <div class="col-12 mb-2">
+                        <input type="password" id="password" class="form-control" v-model="password_Form" placeholder="Password" aria-label="email" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" v-on:click="SignIn()">Đăng nhập</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script language="javascript">
 
-    $('#js-booking').click(function (e) {
+    $('#js-booking').click(function () {
         var a = $("#txtDate").datepicker({ dateFormat: 'yy-mm-dd' }).val();
         $('#date').html(a);
 
-    });    
+    });
+
 </script>
-<script>
+
+
+<script language="javascript" id="load">
+    var _Token = '@ViewBag.Token';
+    var _this = this;
     new Vue({
         el: '#body-top',
         data () {
@@ -391,12 +418,28 @@
                 selected1: 'A',
                 selected2: 'A',
                 selected3: 'A',
-                Price:0,
+                selected4: 'A',
+                Price: '',
                 timeDepart: [],
                 objectIndex: 0,
                 id_route: 'A',
-                dateDeparture: this.formatDate(),
+                id_schedule: '',
+                dateDeparture: '',//this.formatDate(),
                 items: [],
+                id: null,
+                label: null,
+                price: null,
+                Total: null,
+                Token: _Token,
+                name: null,
+                phone: null,
+                email: null,
+                from: null,
+                to: null,
+                email_Form: null,
+                password_Form: null,
+                token_Form: null,
+                id_carts: [{id:this.label}],
                 //Driver: {
                 //    id_driver: "id_driver",
                 //    name: "name",
@@ -409,12 +452,26 @@
             }
         },
         mounted () {
-            this.getUser();
+            //this.getUser();
             this.getUser1();
-            this.getSeat();
+            //this.getSeat();
             //this.DateNow();
             this.selected_DatePicker();
-            this.Jquery();
+            //this.getAdd();
+            //changeModelSeat();
+            //this.eventClick();
+            //this.login_Form();
+            this.button();
+            //this.Form();
+        },
+        computed: {
+
+        },
+        watch: {
+            selected3(newval, oldval) {
+                console.log('new', newval);
+                console.log('old', oldval);
+            },
 
         },
         methods: {
@@ -437,121 +494,182 @@
                     dateFormat: 'yy-mm-dd',
                     minDate: 0,
                     //maxDate:30,
-                    
+
                     onSelect: function (selectedDate, datePicker) {
-                        
+
                         self.dateDeparture = selectedDate;
                         console.log(self.dateDeparture);
-                        
+
                     }
+                }).datepicker("setDate", new Date());
+                $('#js-booking').click(function () {
+                    var a = $("#txtDate").datepicker({ dateFormat: 'yy-mm-dd' }).val();
+                    $('#date').html(a);
+
                 });
             },
+            changeModelSeat() {
+                var _this = this;
+                $('select').click(function () {
+                    $("#container").load("#seat-map");
+                });
+            },
+            getdata_From() {
+                var _this = this;
+                var sel = document.getElementById('idOrigin');
+                var opt = sel.options[sel.selectedIndex];
+                _this.from = opt.text;
+                console.log(opt.text);
+            },
+            getdata_To() {
+                var _this = this;
+                var sel = document.getElementById('idDest');
+                var opt = sel.options[sel.selectedIndex];
+                _this.to = opt.text;
+                console.log(opt.text);
+            },
             Jquery() {
-                
-                    var _this = this;
-                    var firstSeatLabel = 1;
-                    $(document).ready(function () {
-                    var $cart = $('#selected-seats'),
-                            $counter = $('#counter'),
-                            $total = $('#total'),
-                            sc = $('#seat-map').seatCharts({
-                                map: [
-                                    'ee___',
-                                    'ee_ee',
-                                    'ee_ee',
-                                    'ee_ee',
-                                    'ee_ee',
-                                    'ee_ee',
-                                    'eeeee',
-                                ],
-                                seats: {
-                                    f: {
-                                        price: 100,
-                                        classes: 'first-class', //your custom CSS class
-                                        category: 'First Class'
-                                    },
-                                    e: {
-                                        price: _this.Price,
-                                        classes: 'economy-class', //your custom CSS class
-                                        category: 'Economy Class'
-                                    }
 
+                var _this = this;
+                var firstSeatLabel = 1;
+
+                $cart = $('#selected-seats'),
+                        $counter = $('#counter'),
+                        $total = $('#total'),
+                        sc = $('#seat-map').seatCharts({
+                            map: [
+                                'ee___',
+                                'ee_ee',
+                                'ee_ee',
+                                'ee_ee',
+                                'ee_ee',
+                                'ee_ee',
+                                'eeeee',
+                            ],
+                            seats: {
+                                f: {
+                                    price: 100,
+                                    classes: 'first-class', //your custom CSS class
+                                    category: 'First Class'
                                 },
-                                naming: {
-                                    top: false,
-                                    getLabel: function (character, row, column) {
-                                        return firstSeatLabel++;
-                                    },
-                                },
-                                legend: {
-                                    node: $('#legend'),
-                                    items: [
-                                        ['e', 'available', 'Economy Class'],
-                                        ['f', 'unavailable', 'Already Booked']
-                                    ]
-                                },
-                                click: function () {
-                                    if (this.status() == 'available') {
-                                        //let's create a new <li> which we'll add to the cart items
-                                        $('<li>' + this.data().category + ' Seat # ' + this.settings.label + ': <b>$' + this.data().price + '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
-                                            .attr('id', 'cart-item-' + this.settings.id)
-                                            .data('seatId', this.settings.id)
-                                            .appendTo($cart);
+                                e: {
+                                    price: _this.Price,
+                                    classes: 'economy-class', //your custom CSS class
+                                    category: 'Economy Class',
 
-                                        /*
-                                         * Lets update the counter and total
-                                         *
-                                         * .find function will not find the current seat, because it will change its stauts only after return
-                                         * 'selected'. This is why we have to add 1 to the length and the current seat price to the total.
-                                         */
-                                        $counter.text(sc.find('selected').length + 1);
-                                        $total.text(recalculateTotal(sc) + this.data().price);
-
-                                        return 'selected';
-                                    } else if (this.status() == 'selected') {
-                                        //update the counter
-                                        $counter.text(sc.find('selected').length- 1);
-                                        //and total
-                                        $total.text(recalculateTotal(sc) - this.data().price);
-
-                                        //remove the item from our cart
-                                        $('#cart-item-' + this.settings.id).remove();
-
-                                        //seat has been vacated
-                                        return 'available';
-                                    } else if (this.status() == 'unavailable') {
-                                        //seat has been already booked
-                                        return 'unavailable';
-                                    } else {
-                                        return this.style();
-                                    }
                                 }
-                            });
-                    console.log(this.id_route);
 
-                    //this will handle "[cancel]" link clicks
-                    $('#selected-seats').on('click', '.cancel-cart-item', function () {
-                        //let's just trigger Click event on the appropriate seat, so we don't have to repeat the logic here
-                        sc.get($(this).parents('li:first').data('seatId')).click();
-                    });
-        
-                    $.getJSON('http://localhost:3000/seat/' + _this.id_route + '/date/' + _this.dateDeparture + '/time/' + _this.selected3 + '', function (data) {
-                    
-                        sc.get((data.data[0].seat).split(',')).status('unavailable');
-                    });
-                    //let's pretend some seats have already been booked
+
+                            },
+
+                            naming: {
+                                top: false,
+                                getLabel: function (character, row, column) {
+                                    return firstSeatLabel++;
+                                },
+                            },
+                            legend: {
+                                node: $('#legend'),
+                                items: [
+                                    ['e', 'available', 'Economy Class'],
+                                    ['f', 'unavailable', 'Already Booked']
+                                ]
+                            },
+                            click: function () {
+                                
+                                if (this.status() == 'available') {
+                                    _this.id = this.settings.id;
+                                    
+                                    _this.label = this.settings.label;
+                                    _this.Total = this.data().price;
+                                   
+                                    _this.add_ID();
+                                    //console.log(_this.id);
+                                    
+                                    console.log(_this.label);
+
+
+                                    //let's create a new <li> which we'll add to the cart items
+                                    //$('<li>' + this.data().category + ' Seat # ' + this.settings.label + ': <b>$' + this.data().price + '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
+                                    $('<p>' + ' Seat # ' + this.settings.label + '</p>')
+                                        .attr('id', 'cart-item-' + this.settings.id)
+                                        .data('seatId', this.settings.id)
+                                        .appendTo($cart);
+
+                                    /*
+                                     * Lets update the counter and total
+                                     *
+                                     * .find function will not find the current seat, because it will change its stauts only after return
+                                     * 'selected'. This is why we have to add 1 to the length and the current seat price to the total.
+                                     */
+                                    console.log(sc.find('selected').length);
+                                    $counter.text(sc.find('selected').length + 1);
+                                    console.log(sc.find('selected').length);
+                                    
+                                    $total.text(recalculateTotal(sc) + this.data().price);
+                                    
+                                    console.log(this.data().price);
+                                    
+                                    return 'selected';
+                                } else if (this.status() == 'selected') {
+                                    //update the counter
+                                    _this.label = this.settings.label;
+                                    console.log(sc.find('selected').length);
+                                    $counter.text(sc.find('selected').length - 1);
+
+                                    console.log("------------------");
+                                    console.log($counter.text(sc.find('selected').length - 1));
+
+                                    //and total
+                                    $total.text(recalculateTotal(sc) - this.data().price);
+                                    //_this.findIndex(sc.find('selected').length - 2);
+                                    _this.findIndex(_this.label);
+                                    //remove the item from our cart
+                                    $('#cart-item-' + this.settings.id).remove();
+                                    
+                                    
+
+                                    //seat has been vacated
+                                    return 'available';
+                                } else if (this.status() == 'unavailable') {
+                                    //seat has been already booked
+                                    return 'unavailable';
+                                } else {
+                                    return this.style();
+                                }
+                            }
+                        });
+                //this will handle "[cancel]" link clicks
+                //$('#selected-seats').on('click', '.cancel-cart-item', function () {
+                //    //let's just trigger Click event on the appropriate seat, so we don't have to repeat the logic here
+                //    sc.get($(this).parents('li:first').data('seatId')).click();
+                //});
+
+
+                //let's pretend some seats have already been booked
+
+                $.getJSON('http://localhost:3000/seat/' + _this.id_route + '/date/' + _this.dateDeparture + '/time/' + _this.selected3 + '', function (data) {
+
+                    console.log('sc');
+                    console.log(sc.status);
+
+                    sc.get((data.data[0].seat).split(',')).status('unavailable');
+
                 });
 
-                    function recalculateTotal(sc) {
-                        var total = 0;
 
-                        //basically find every selected seat and sum its price
-                        sc.find('selected').each(function () {
-                            total += this.data().price;
-                        });
 
-                        return total;
-                    }
+
+                function recalculateTotal(sc) {
+                    var total = 0;
+
+                    //basically find every selected seat and sum its price
+                    sc.find('selected').each(function () {
+                        total += this.data().price;
+                    });
+
+                    return total;
+                }
                 var _gaq = _gaq || [];
                 _gaq.push(['_setAccount', 'UA-36251023-1']);
                 _gaq.push(['_setDomainName', 'jqueryscript.net']);
@@ -574,19 +692,19 @@
             //           }
             //       })
             //},
-            getUser() {
-                axios.get('http://localhost:3000/station')
-                   .then(response => {
-                       //this.items = [];
-                       //if (response.data.success) {
-                       //    this.items = [];
-                       //    this.items = response.data.data.name;
-                       //}
-                       //else {
-                       //    callToast("Không thành công", response.data.message, "error");
-                       //}
-                   })
-            },
+            //getUser() {
+            //    axios.get('http://localhost:3000/station')
+            //       .then(response => {
+            //           //this.items = [];
+            //           //if (response.data.success) {
+            //           //    this.items = [];
+            //           //    this.items = response.data.data.name;
+            //           //}
+            //           //else {
+            //           //    callToast("Không thành công", response.data.message, "error");
+            //           //}
+            //       })
+            //},
             getUser1() {
                 axios.get('http://localhost:3000/station')
                    .then(response => {
@@ -603,26 +721,35 @@
             },
             getUser2() {
                 axios.get('http://localhost:3000/st1/' + this.selected1 + '/st2/' + this.selected2 + '')
-                   .then(response => {
-                       //this.items = [];
-                       this.items = response.data;
-                       //if (response.data.success) {
-                       //    this.items = [];
-                       //    this.items = response.data.data.name;
-                       //}
-                       //else {
-                       //    callToast("Không thành công", response.data.message, "error");
-                       //}
-                   })
+               .then(response => {
+                   //this.items = [];
+                   this.items = response.data;
+                   //if (response.data.success) {
+                   //    this.items = [];
+                   //    this.items = response.data.data.name;
+                   //}
+                   //else {
+                   //    callToast("Không thành công", response.data.message, "error");
+                   //}
+               })
+
+
             },
             getUser3() {
-                axios.get('http://localhost:3000/st1/' + this.selected1 + '/st2/' + this.selected2 + '/dep/' + this.dateDeparture + '')
-                   .then(response => {
-                       this.items = response.data;
-                       this.timeDepart = response.data.data1;
-                       this.id_route = response.data.data1[0].id_route;
-                       //}
-                   })
+                if (this.selected1 === this.selected2) {
+                    alert("Bạn chọn sai!!!");
+                } else {
+
+                    axios.get('http://localhost:3000/st1/' + this.selected1 + '/st2/' + this.selected2 + '/dep/' + this.dateDeparture + '')
+                       .then(response => {
+                           this.items = response.data;
+                           this.timeDepart = response.data.data1
+                           this.Price = response.data.data1[0].price;
+                           this.id_route = response.data.data1[0].id_route;
+                           this.id_schedule = response.data.data1[0].id_schedule;
+                           //}
+                       })
+                }
             },
             getSeat() {
                 axios.get('http://localhost:3000/seat/' + this.id_route + '/date/' + this.dateDeparture + '/time/' + this.selected3 + '')
@@ -632,134 +759,111 @@
                        //}
                    })
             },
-        },
-        
-
-
-    });
-
-</script>
-
-
-@*<script>
-    var firstSeatLabel = 1;
-    var _this = this;
-    $(document).ready(function () {
-        var $cart = $('#selected-seats'),
-            $counter = $('#counter'),
-            $total = $('#total'),
-            sc = $('#seat-map').seatCharts({
-                map: [
-                    'ee___',
-                    'ee_ee',
-                    'ee_ee',
-                    'ee_ee',
-                    'ee_ee',
-                    'ee_ee',
-                    'eeeee',
-                ],
-                seats: {
-                    f: {
-                        price: 100,
-                        classes: 'first-class', //your custom CSS class
-                        category: 'First Class'
-                    },
-                    e: {
-                        price: 100000,
-                        classes: 'economy-class', //your custom CSS class
-                        category: 'Economy Class'
-                    }
-
-                },
-                naming: {
-                    top: false,
-                    getLabel: function (character, row, column) {
-                        return firstSeatLabel++;
-                    },
-                },
-                legend: {
-                    node: $('#legend'),
-                    items: [
-                        ['e', 'available', 'Economy Class'],
-                        ['f', 'unavailable', 'Already Booked']
-                    ]
-                },
-                click: function () {
-                    if (this.status() == 'available') {
-                        //let's create a new <li> which we'll add to the cart items
-                        $('<li>' + this.data().category + ' Seat # ' + this.settings.label + ': <b>$' + this.data().price + '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
-                            .attr('id', 'cart-item-' + this.settings.id)
-                            .data('seatId', this.settings.id)
-                            .appendTo($cart);
-
-                        /*
-                         * Lets update the counter and total
-                         *
-                         * .find function will not find the current seat, because it will change its stauts only after return
-                         * 'selected'. This is why we have to add 1 to the length and the current seat price to the total.
-                         */
-                        $counter.text(sc.find('selected').length + 1);
-                        $total.text(recalculateTotal(sc) + this.data().price);
-
-                        return 'selected';
-                    } else if (this.status() == 'selected') {
-                        //update the counter
-                        $counter.text(sc.find('selected').length - 1);
-                        //and total
-                        $total.text(recalculateTotal(sc) - this.data().price);
-
-                        //remove the item from our cart
-                        $('#cart-item-' + this.settings.id).remove();
-
-                        //seat has been vacated
-                        return 'available';
-                    } else if (this.status() == 'unavailable') {
-                        //seat has been already booked
-                        return 'unavailable';
-                    } else {
-                        return this.style();
+            getAdd() {
+                axios.get('http://localhost:3000/ssstation/' + this.selected1 + '')
+                .then(response=> { this.items = response.data.data; })
+            },
+            createTicket() {
+                const config = {
+                    headers: {
+                        'Authorization': this.Token
                     }
                 }
-            });
+                console.log("create");
+                console.log(this.id);
+                console.log(this.Token);
+                axios.get('http://localhost:3000/insertTicket/' + this.id_schedule + '/seat/' + this.id + '', config)
+                .then(response=> { this.items = response.data; })
+                alert("Đặt vé thành công!!!");
+                console.log(this.items);
+            },
+            checkToken() {
+                const config = {
+                    headers: {
+                        'Authorization': this.Token
+                    }
+                }
+                console.log(this.Token);
+                if (this.Token === "") {
+                    alert("Bạn cần phải đăng nhập để được tiếp tục !!");
 
-        //this will handle "[cancel]" link clicks
-        $('#selected-seats').on('click', '.cancel-cart-item', function () {
-            //let's just trigger Click event on the appropriate seat, so we don't have to repeat the logic here
-            sc.get($(this).parents('li:first').data('seatId')).click();
-        });
-        $(function () {
-            $.getJSON('http://localhost:3000/seat/' + _this.id_route + '/date/' + _this.dateDeparture + '/time/' + _this.selected3 + '', function (data) {
-                console.log(data);
-            });
-        });
-        //let's pretend some seats have already been booked
-        sc.get(['1_2', '4_1', '7_1', '7_2']).status('unavailable');
+                } else {
+                    axios.get('http://localhost:3000/validate', config)
+                         .then(response => {
+                             this.name = response.data.data[0].name;
+                             this.phone = response.data.data[0].phone;
+                             this.email = response.data.data[0].e_mail;
+                             console.log(response.data.data[0].e_mail);
+                         })
+                }
 
+            },
+            moveToken() {
+                
+                        window.location = '/Client/Profile_Pass/Index?token=' + this.Token;                                   
+            },
+            SignIn() {
+                console.log(this.email_Form);
+                const data1 = {
+                    username: this.email_Form,
+                    password: this.password_Form,
+                }
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+                axios.post('http://localhost:3000/login', data1, config)
+                .then(response => {
+
+                    if (response.data.data === 'fail') {
+                        console.log(response.data.data);
+                        alert("Login fail");
+                    } else {
+                        console.log(response.data.success);
+                        this.items = response.data.success;
+                        this.Token = response.data.success;
+                        
+                    }
+                })
+            },
+            add_ID () {
+                var _this = this;
+                var newid = _this.label;
+                if (!newid) { return; }
+                this.id_carts.push({ id: newid });
+                this.deduplicate(this.id_carts);
+                console.log(this.id_carts);
+            },
+            swap(a, b) {
+                console.log(a, b);
+                return [b, a];
+            },
+           
+            findIndex(gt)
+            {
+                var _this = this;
+                $(document).ready(function(){
+                    
+                    var arr = _this.id_carts;
+                    
+                    var itemtoRemove = gt;
+                    
+                    arr.splice($.inArray(itemtoRemove, arr),1);
+                    
+                })
+                console.log(_this.id_carts);
+            },
+            deduplicate(arr) {
+                let set = new Set(arr);
+                return Array.from(set);
+            },
+            button() {
+                if (this.Token === "")
+                {
+                    $("#pf").hide();
+                }
+            },           
+        },
     });
-
-    function recalculateTotal(sc) {
-        var total = 0;
-
-        //basically find every selected seat and sum its price
-        sc.find('selected').each(function () {
-            total += this.data().price;
-        });
-
-        return total;
-    }
-
 </script>
-<script type="text/javascript">
-
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-36251023-1']);
-    _gaq.push(['_setDomainName', 'jqueryscript.net']);
-    _gaq.push(['_trackPageview']);
-
-    (function () {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-
-</script>*@

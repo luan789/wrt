@@ -14,23 +14,33 @@
     <link rel="stylesheet" type="text/css" href="~/Assets/Client1/css/seat.css" />
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons'>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="~/Assets/Client1/Profile/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
     <link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="Stylesheet" type="text/css" />
     <link href="/Assets/Client1/css/DatePicker.css" rel="stylesheet" />
+    <link href="/Assets/Client1/Profile/css/sb-admin-2.min.css" rel="stylesheet" />
 
     <script type="text/javascript" src="/Assets/Client1/js/jquery.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js'></script>
-
+    <script src="/Assets/Client1/js/vue.js"></script>
+    <script src="/Assets/Client1/js/vue.min.js"></script>
     <script src="//unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="/Assets/Client1/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/Assets/Client1/dist/fontawesome/js/all.min.js"></script>
-    <script type="text/javascript" src="~/Assets/Client1/js/JavaScript.js"></script>
-    <script type="text/javascript" src="/Assets/Client1/js/booking.js"></script>
+    @*<script type="text/javascript" src="~/Assets/Client1/js/JavaScript.js"></script>*@
+    <script src="~/Assets/Client1/js/script.js"></script>
+
     <script type="text/javascript" src="/Assets/Client1/js/WTR-I-Passenger.js"></script>
-    <script src="~/Assets/Client1/dist/slick/slick.js"></script>
-    <script type="text/javascript" src="~/Assets/Client1/js/jquery.seat-charts.js"></script>
+    <script src="/Assets/Client1/dist/slick/slick.js"></script>
+    <script type="text/javascript" src="/Assets/Client1/js/jquery.seat-charts.js"></script>
+
+
+
+
+
 </head>
 <body id="home">
     <section>
@@ -59,16 +69,21 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Liên hệ</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Client/User/Index">Đăng nhập</a>
+                        <li class="nav-item" id="per">
+                            <a class="nav-link" href="/Client/Profile_Pass/Index">Profile</a>
                         </li>
-                        <li class="nav-item">
+
+                        <li class="nav-item" id="dn">
+                            <a class="nav-link" href="/Client/User/Index" v-on:click="">Đăng nhập</a>
+                        </li>
+                        <li class="nav-item" id="dx">
                             <a class="nav-link" href="/Client/User/Register">Đăng ký</a>
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-submit my-2 my-sm-0" id="" type="submit">Search</button>
+                        
                     </form>
                 </div>
             </div>
@@ -230,5 +245,26 @@
             </div>
         </div>
     </section>
-    </body>
+</body> 
 </html>
+<script type="text/javascript">
+    new Vue({
+        el: 'home',
+        data() {
+            return {
+            }
+        },
+        methods: {
+            hideTag_a() {
+                $("#dn").hide();
+                $("#dn").load(function (event) {
+                    event.preventDefault();
+                    $(this).hide();
+                                       
+                })
+                    
+                
+            },
+        },
+    })
+</script>

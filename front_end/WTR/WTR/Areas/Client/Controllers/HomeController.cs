@@ -9,8 +9,9 @@ namespace WTR.Areas.Client.Controllers
     public class HomeController : Controller
     {
         // GET: Client/Home
-        public ActionResult Index()
+        public ActionResult Index(string token = null)
         {
+            ViewBag.Token = token;
             return View();
         }
     }
