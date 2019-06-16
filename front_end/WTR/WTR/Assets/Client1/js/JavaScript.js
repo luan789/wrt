@@ -34,7 +34,7 @@
         $('#steps ul li').eq(1).addClass('active');
     });
     $('.steps3 #js-btn-prev').click(function (event) {
-        console.log('hello');
+
         /* Act on the event */
         $('.steps2').show();
         $('.steps3').hide();

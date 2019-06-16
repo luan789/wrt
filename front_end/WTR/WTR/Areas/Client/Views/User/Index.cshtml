@@ -61,21 +61,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div id="header-body">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-ms-12">
+                        <div class="col-12 col-md-6">
                             <h1 id="logo">
                                 <a href="">
                                     
                                 </a>
                             </h1>
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-ms-12 pull-right text-right">
+                        <div class="col-12 col-md-6 pull-right text-right">
                             <button type="button" class="btn btn-primary btn-block btn-flat btn-support">
                                 <i class="fa fa-phone icon-flat bg-btn-actived"></i>
                                 Tổng đài hỗ trợ: <span>1900 6067</span>
                             </button>
-
-
-
                         </div>
                     </div>
                 </div>
@@ -89,27 +86,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <div class="container" id="login-page">
                 <div id="body-login" class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-ms-12">
+                    <div class="col-12 col-md-6">
 
                         <div id="login-form-left" class="border clearfix">
-                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-ms-12 col-lg-offset-2 col-md-offset-2">
-                                <h3 class="text-uppercase text-center" style="margin:10px">Tôi đã đăng ký tài khoản</h3>
+                            <div class="col-12">
+                                <h3 class="text-uppercase text-center my-3">Tôi đã đăng ký tài khoản</h3>
 
                                 <div  class="form-horizontal">
                                     <div class="form-group">
-                                        <label for="">Tên đăng nhập*</label>
+                                        <label for="">Tên đăng nhập<span class="text-danger">*</span></label>
                                         <input class="form-control" v-model="email"  data-val="true" data-val-required="Vui lòng điền email hoặc sđt" id="UserName" name="UserName" placeholder="Điền email" type="email" value="" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Mật khẩu*</label>
+                                        <label for="">Mật khẩu<span class="text-danger">*</span></label>
                                         <input class="form-control" v-model="password" data-val="true" data-val-required="Vui lòng nhập mật khẩu" id="Password" name="Password" placeholder="Điền mật khẩu" type="password" />
                                     </div>
 
-                                    <div class="form-group">
-                                        <a href="/User/ForgetPassword">Quên mật khẩu?</a>
-                                        <button class="btn btn-primary pull-right" v-on:click="SignIn()">
+                                    <div class="form-group float-lg-right">
+                                        <button class="btn btn-primary pull-right" v-on:click="SignIn()" id="login">
                                             Đăng nhập
                                         </button>
+                                        <a href="/User/ForgetPassword">Quên mật khẩu?</a>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -117,15 +115,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-ms-12">
+                    <div class="col-12 col-md-6">
                         <div id="login-form-right" class="border clearfix">
-                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-ms-12 col-lg-offset-2 col-md-offset-2">
-                                <h3 class="text-uppercase text-center">Bạn là khách hàng mới?</h3>
+                            <div class="col-12">
+                                <h3 class="text-uppercase text-center my-3">Bạn là khách hàng mới?</h3>
                                 <p class="text-center">
-                                    <a href="/User/Register" class="btn btn-success">Đăng ký</a>
+                                    <a href="/Client/User/Register" class="btn btn-success btn-booking">Đăng ký</a>
                                 </p>
                                 <p class="text-muted text-center">
-                                    Chỉ với 1 tài khoản FUTABUS ID, tham gia được tất cả các chương trình của FUTA Bus Lines
+                                    Bạn đăng ký để có thêm nhiều tiện lợi hơn khi truy cập website<br />
+                                    Chúng tôi luôn đồng hành cùng bạn Thành Đạt Travel
                                 </p>
 
 
@@ -192,6 +191,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         this.items = response.data.success;
                         this.token = response.data.success;
                         window.location = '/Client/Home/Index?token=' + this.token;
+                        
                     }
                 })
             },

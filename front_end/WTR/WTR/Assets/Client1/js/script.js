@@ -2,12 +2,12 @@
     $('#js-booking').click(function () {
         checkDate();
         //$('').each(function () {
-        if (idOrigin() && idDest() && checkDate()) {
+        if (idOrigin() && idDest() && checkDate() && idOrigin()) {
             $('#body-contents').css('display', 'block');
             $('.booking').css('display', 'none');
         }
         else
-            alert('Vui lòng chọn đầy đủ thông tin');
+            alert('Bạn chưa nhập đủ thông tin hoặc thông tin chưa hợp lệ !!!');
         //})
     });
     $('.steps1 #js-btn-prev').click(function (event) {
@@ -53,6 +53,17 @@
         $('#steps ul li').removeClass('active');
         $('#steps ul li').eq(1).addClass('active');
     });
+    $('#login').click(function () {
+        $('ul #dn').css('display', 'disable')
+    });
+    $('.steps3 #js-btn-prev').click(function (event) {
+
+        /* Act on the event */
+        $('.steps2').show();
+        $('.steps3').hide();
+        $('#steps ul li').removeClass('active');
+        $('#steps ul li').eq(2).addClass('active');
+    });
     function checkVal() {
         return $('#js-email').val().length > 0 && $('#js-name').val().length > 0 && $('#js-num').val().length > 0 ? true : false;
     }
@@ -68,10 +79,18 @@
         var dateseclected = $('#txtDate').val().length;
         return dateseclected >0  ? true : false;
     }
+    function check_val() {
+        if ($('#idDest option').val() === $('#idOrigin option').val())
+        {
+            return false;
+        }
+        return true;
+    }
     function idDest() {
         return $('#idDest option').is(':selected') ? true : false;
     }
     function idOrigin() {
         return $('#idOrigin option').is(':selected') ? true : false;
     }
+
 });

@@ -140,8 +140,8 @@
                                                         <label for="">Giờ khởi hành</label>
                                                         <div class="controls" id="gkh">
                                                             <i class="far fa-clock icon"></i>
-                                                            <select name="idDest" id="select" class="form-control  selectpicker" v-model="selected3" v-on:click="getSeat();Jquery();changeModelSeat()">
-                                                                <option v-for="item in timeDepart" v-on:click="Jquery();changeModelSeat()">{{item.departure}}</option>
+                                                            <select name="idDest" id="select" class="form-control  selectpicker" v-model="selected3" v-on:click="Jquery();update_Model()">
+                                                                <option v-for="item in timeDepart" v-on:click="Jquery()">{{item.departure}}</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -183,7 +183,7 @@
                             <div class="wrapper tab-content" id="Model">
                                 <div class="wr-top">
                                     
-                                    <span class="float-left">Số ghế:  <span id="counter">0</span></span><span class="float-right">Tổng tiền: <span id="total" v-model="Total">{{Total}}</span>vnd</span>
+                                    <span class="float-left">Số ghế:  <span id="counter">0</span></span><span class="float-right">Tổng tiền: <span id="total">{{Total}}</span>vnd</span>
                                     @*<div class="booking-details">
                                             <h2>Booking Details</h2>
                                             <h3> Selected Seats (<span id="counter">0</span>):</h3>
@@ -285,36 +285,38 @@
                                     <div class="panel">
                                         <p class="text-upercase text-center text-title">Chọn cổng thanh toán</p>
                                         <div class="payment">
-                                            <ul class="row">
-                                                <li class="col-12 col-md-4">
-                                                    <div class="text-center panel-pay">
-                                                        <p class="text-center">Thanh toán thẻ tín dụng/ghi nợ</p>
-                                                        <div class="payment-img">
-                                                            <img src="/Assets/Client1/images/visa-card.gif" alt="Thanh toán thẻ tín dụng/ghi nợ" class="img-fluid">
+                                            <div class="mb-2">
+                                                <ul class="row">
+                                                    <li class="col-12 col-md-4 align-content-center">
+                                                        <div class="text-center panel-pay">
+                                                            <p class="text-center mx-2">Thanh toán thẻ tín dụng/ghi nợ</p>
+                                                            <div class="payment-img m-auto d-block">
+                                                                <img src="/Assets/Client1/images/visa-card.gif" alt="Thanh toán thẻ tín dụng/ghi nợ" class="img-fluid">
+                                                            </div>
+                                                            <input class="" type="radio" name="exampleRadios" id="rd-1" value="option1">
                                                         </div>
-                                                        <input type="radio" />
-                                                    </div>
-                                                </li>
-                                                <li class="col-12 col-md-4">
-                                                    <div class="text-center panel-pay">
-                                                        <p class="text-center">Thanh toán thẻ ATM Nội địa</p>
-                                                        <div class="payment-img">
-                                                            <img src="/Assets/Client1/images/nganluong.vn.png" alt="Thanh toán thẻ ATM Nội địa" class="img-fluid">
+                                                    </li>
+                                                    <li class="col-12 col-md-4">
+                                                        <div class="text-center panel-pay">
+                                                            <p class="text-center mx-2">Thanh toán thẻ ATM Nội địa</p>
+                                                            <div class="payment-img m-auto d-block">
+                                                                <img src="/Assets/Client1/images/nganluong.vn.png" alt="Thanh toán thẻ ATM Nội địa" class="img-fluid">
+                                                            </div>
+                                                            <input class="" type="radio" name="exampleRadios" id="rd-2" value="option2">
                                                         </div>
-
-                                                        <input type="radio" />
-                                                    </div>
-                                                </li>
-                                                <li class="col-12 col-md-4">
-                                                    <div class="text-center panel-pay">
-                                                        <p class="text-center">Thanh toán thẻ ATM Nội địa</p>
-                                                        <div class="payment-img">
-                                                            <img src="/Assets/Client1/images/napas.jpg" alt="Thanh toán thẻ ATM Nội địa" class="img-fluid">
+                                                    </li>
+                                                    <li class="col-12 col-md-4">
+                                                        <div class="text-center panel-pay">
+                                                            <p class="text-center mx-2">Thanh toán thẻ ATM Nội địa</p>
+                                                            <div class="payment-img m-auto d-block">
+                                                                <img src="/Assets/Client1/images/napas.jpg" alt="Thanh toán thẻ ATM Nội địa" class="img-fluid">
+                                                            </div>
+                                                            <input class="" type="radio" name="exampleRadios" id="rd-3" value="option2" checked>
                                                         </div>
-                                                        <input type="radio" class="text-center" />
-                                                    </div>
-                                                </li>
-                                            </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            
                                             <div class="col-12">
                                                 <button type="button" class="btn btn-primary btn-block btn-flat btn-booking" id="js-btn-prev"><< Quay lại</button>
                                             </div>
@@ -336,8 +338,10 @@
                                                         <td>Ngày đi:</td>
                                                         <td>{{dateDeparture}}</td>
                                                         <td>Ghế:</td>
-                                                        <td>{{id_carts[0]}}</td>
+                                                        <td><span v-for="item in id_carts"><span>{{item.id}},</span></span></td>
+
                                                     </tr>
+                                                    
                                                     <tr>
                                                         <td>Điểm lên xe</td>
                                                         <td colspan="3">{{selected4}}</td>
@@ -359,7 +363,7 @@
                                                 </tbody>
                                             </table>
                                             <div class="col-12">
-                                                <button type="submit" class="btn btn-primary btn-block btn-flat btn-booking" v-on:click="createTicket()">Thanh toán</button>
+                                                <button type="submit" class="btn btn-primary btn-block btn-flat btn-booking" v-on:click="createTicket();moveHome()">Thanh toán</button>
 
                                             </div>
                                         </div>
@@ -439,7 +443,8 @@
                 email_Form: null,
                 password_Form: null,
                 token_Form: null,
-                id_carts: [{id:this.label}],
+                id_carts: [{ id: this.label }],
+                stt_seat: null,
                 //Driver: {
                 //    id_driver: "id_driver",
                 //    name: "name",
@@ -511,7 +516,8 @@
             changeModelSeat() {
                 var _this = this;
                 $('select').click(function () {
-                    $("#container").load("#seat-map");
+                    
+                    _this.Jquery().data.map.remove();
                 });
             },
             getdata_From() {
@@ -527,6 +533,32 @@
                 var opt = sel.options[sel.selectedIndex];
                 _this.to = opt.text;
                 console.log(opt.text);
+            },
+            update_Model() {
+                $('#seat-map').seatCharts({
+                    map: [
+                                'ee___',
+                                'ee_ee',
+                                'ee_ee',
+                                'ee_ee',
+                                'ee_ee',
+                                'ee_ee',
+                                'eeeee',
+                    ],
+                    seats: {                       
+                        e: {
+                            price: _this.Price,
+                            classes: 'economy-class', //your custom CSS class
+                            category: 'Economy Class',                            
+                        }
+                    },
+                    legend: {
+                        node: $('#legend'),
+                        items: [
+                            ['e', 'available', 'Economy Class'],                         
+                        ]
+                    },
+                })
             },
             Jquery() {
 
@@ -556,7 +588,7 @@
                                     price: _this.Price,
                                     classes: 'economy-class', //your custom CSS class
                                     category: 'Economy Class',
-
+                                    
                                 }
 
 
@@ -582,7 +614,7 @@
                                     
                                     _this.label = this.settings.label;
                                     _this.Total = this.data().price;
-                                   
+                                    _this.stt_seat = this.status();
                                     _this.add_ID();
                                     //console.log(_this.id);
                                     
@@ -647,6 +679,7 @@
 
 
                 //let's pretend some seats have already been booked
+               
 
                 $.getJSON('http://localhost:3000/seat/' + _this.id_route + '/date/' + _this.dateDeparture + '/time/' + _this.selected3 + '', function (data) {
 
@@ -656,7 +689,7 @@
                     sc.get((data.data[0].seat).split(',')).status('unavailable');
 
                 });
-
+                _this.update_Model();
 
 
 
@@ -681,17 +714,7 @@
                     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
                 })();
             },
-            //getID(id) {
-            //    axios.get('http://localhost:54429/User/GetData/', { params: { id } })
-            //       .then(response => {
-            //           if (response.data.success) {
-            //               this.items = response.data.content;
-            //           }
-            //           else {
-            //               callToast("Không thành công", response.data.message, "error");
-            //           }
-            //       })
-            //},
+
             //getUser() {
             //    axios.get('http://localhost:3000/station')
             //       .then(response => {
@@ -737,7 +760,9 @@
             },
             getUser3() {
                 if (this.selected1 === this.selected2) {
+                    
                     alert("Bạn chọn sai!!!");
+                    
                 } else {
 
                     axios.get('http://localhost:3000/st1/' + this.selected1 + '/st2/' + this.selected2 + '/dep/' + this.dateDeparture + '')
@@ -802,6 +827,9 @@
                 
                         window.location = '/Client/Profile_Pass/Index?token=' + this.Token;                                   
             },
+            moveHome() {
+                window.location = '/Client/Home/Index?token=' + this.Token;
+            },
             SignIn() {
                 console.log(this.email_Form);
                 const data1 = {
@@ -859,9 +887,13 @@
                 return Array.from(set);
             },
             button() {
-                if (this.Token === "")
-                {
+                if (this.Token === "") {
+                    $("#per").hide();
                     $("#pf").hide();
+                }
+                else {
+                    $("#dn").hide();
+                    $("#dx").hide();
                 }
             },           
         },
