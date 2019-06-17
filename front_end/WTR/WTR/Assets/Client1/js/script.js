@@ -40,6 +40,7 @@
             $('.steps2').hide();
             $('#steps ul li').removeClass('active');
             $('#steps ul li').eq(3).addClass('active');
+            $('#money').html($('#total').text());
         }
         else
             alert('Yêu cầu nhập thông tin đầy đủ');

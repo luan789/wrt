@@ -129,11 +129,22 @@
 
                 })
             },
+            button() {
+                if (this.Token === "") {
+                    $("#per").hide();
+                    $("#pf").hide();
+                    $("#ulpf").hide();
+                }
+                else {
+                    $("#dn").hide();
+                    $("#dx").hide();
+                }
+            },
         },
         mounted() {
             this.history();
             this.checkToken();
-
+            this.button();
         },
     });
 </script>

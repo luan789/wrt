@@ -48,8 +48,8 @@
                                         <div class="controls">
                                             <i class="fa fa-bus icon"></i>
 
-                                            <select name="idDest" id="idDest" class="form-control  selectpicker" v-model="selected2" v-on:click="getdata_To()">
-                                                <option v-for="item in items.data" v-bind:value="item.id_station" value="{{item.name}}">{{item.name}}</option>
+                                            <select name="idDest" id="idDest" class="form-control  selectpicker" v-model="selected2" v-on:click="getST();getdata_To()">
+                                                <option v-for="item in items1.data" v-bind:value="item.id_destinate" value="{{item.name}}">{{item.name}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -140,7 +140,7 @@
                                                         <label for="">Giờ khởi hành</label>
                                                         <div class="controls" id="gkh">
                                                             <i class="far fa-clock icon"></i>
-                                                            <select name="idDest" id="select" class="form-control  selectpicker" v-model="selected3" v-on:click="Jquery();update_Model()">
+                                                            <select name="idDest" id="select" class="form-control  selectpicker" v-model="selected3" v-on:click="Jquery()">
                                                                 <option v-for="item in timeDepart" v-on:click="Jquery()">{{item.departure}}</option>
                                                             </select>
                                                         </div>
@@ -183,7 +183,7 @@
                             <div class="wrapper tab-content" id="Model">
                                 <div class="wr-top">
                                     
-                                    <span class="float-left">Số ghế:  <span id="counter">0</span></span><span class="float-right">Tổng tiền: <span id="total">{{Total}}</span>vnd</span>
+                                    <span class="float-left">Số ghế:  <span id="counter">0</span></span><span class="float-right">Tổng tiền: <span id="total"></span>vnd</span>
                                     @*<div class="booking-details">
                                             <h2>Booking Details</h2>
                                             <h3> Selected Seats (<span id="counter">0</span>):</h3>
@@ -358,7 +358,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>Thành tiền:</td>
-                                                        <td colspan="3">{{Total}}</td>
+                                                        <td colspan="3"><span id="money"></span></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -430,10 +430,11 @@
                 id_schedule: '',
                 dateDeparture: '',//this.formatDate(),
                 items: [],
+                items1:[],
                 id: null,
                 label: null,
                 price: null,
-                Total: null,
+                Total: 0,
                 Token: _Token,
                 name: null,
                 phone: null,
@@ -443,8 +444,9 @@
                 email_Form: null,
                 password_Form: null,
                 token_Form: null,
-                id_carts: [{ id: this.label }],
+                id_carts: [{ id: this.label }] ,
                 stt_seat: null,
+                lst_id: [{id:this.id}],
                 //Driver: {
                 //    id_driver: "id_driver",
                 //    name: "name",
@@ -459,6 +461,7 @@
         mounted () {
             //this.getUser();
             this.getUser1();
+            //this.getST();
             //this.getSeat();
             //this.DateNow();
             this.selected_DatePicker();
@@ -514,6 +517,7 @@
                 });
             },
             changeModelSeat() {
+                
                 var _this = this;
                 $('select').click(function () {
                     
@@ -535,6 +539,7 @@
                 console.log(opt.text);
             },
             update_Model() {
+                var _this = this;
                 $('#seat-map').seatCharts({
                     map: [
                                 'ee___',
@@ -549,16 +554,22 @@
                         e: {
                             price: _this.Price,
                             classes: 'economy-class', //your custom CSS class
-                            category: 'Economy Class',                            
+                            category: 'Economy Class',
+                            function() {
+                                if (this.status == 'available')
+                                {
+                                    return 'unavailable';
+                                }
+                            }
                         }
                     },
                     legend: {
                         node: $('#legend'),
                         items: [
-                            ['e', 'available', 'Economy Class'],                         
+                            ['e', 'available', 'Economy Class'],
                         ]
                     },
-                })
+                });
             },
             Jquery() {
 
@@ -610,10 +621,10 @@
                             click: function () {
                                 
                                 if (this.status() == 'available') {
-                                    _this.id = this.settings.id;
                                     
+                                    _this.id = this.settings.id;
                                     _this.label = this.settings.label;
-                                    _this.Total = this.data().price;
+                                    //_this.Total = this.data().total;
                                     _this.stt_seat = this.status();
                                     _this.add_ID();
                                     //console.log(_this.id);
@@ -656,6 +667,7 @@
                                     $total.text(recalculateTotal(sc) - this.data().price);
                                     //_this.findIndex(sc.find('selected').length - 2);
                                     _this.findIndex(_this.label);
+                                    _this.findIndexlst(_this.id);
                                     //remove the item from our cart
                                     $('#cart-item-' + this.settings.id).remove();
                                     
@@ -671,6 +683,7 @@
                                 }
                             }
                         });
+                //_this.update_Model();
                 //this will handle "[cancel]" link clicks
                 //$('#selected-seats').on('click', '.cancel-cart-item', function () {
                 //    //let's just trigger Click event on the appropriate seat, so we don't have to repeat the logic here
@@ -680,29 +693,31 @@
 
                 //let's pretend some seats have already been booked
                
-
+                
                 $.getJSON('http://localhost:3000/seat/' + _this.id_route + '/date/' + _this.dateDeparture + '/time/' + _this.selected3 + '', function (data) {
-
+                    
                     console.log('sc');
                     console.log(sc.status);
-
+                    _this.remove_Seat();
+                    
                     sc.get((data.data[0].seat).split(',')).status('unavailable');
-
                 });
-                _this.update_Model();
+                
 
 
 
                 function recalculateTotal(sc) {
                     var total = 0;
-
+                    
                     //basically find every selected seat and sum its price
                     sc.find('selected').each(function () {
                         total += this.data().price;
+                        _this.Total = total;
                     });
-
-                    return total;
+                    //_this.Total = this.total;
+                    return _this.Total;
                 }
+               
                 var _gaq = _gaq || [];
                 _gaq.push(['_setAccount', 'UA-36251023-1']);
                 _gaq.push(['_setDomainName', 'jqueryscript.net']);
@@ -713,6 +728,14 @@
                     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
                     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
                 })();
+            },
+            remove_Seat() {
+                $('#select').on('change', function (e) {
+                    if ($('.seatCharts-row div').hasClass('unavailable')) {
+                        $('.seatCharts-row div').removeClass('unavailable');
+                        $('.seatCharts-row div').addClass('available');
+                    }
+                })
             },
 
             //getUser() {
@@ -728,6 +751,14 @@
             //           //}
             //       })
             //},
+            getST() {
+                console.log(this.selected1);
+                axios.get('http://localhost:3000/orign/' + this.selected1 + '')
+                .then(response=> {
+                    this.items1 = response.data;
+                    console.log(this.items1);
+                })
+            },
             getUser1() {
                 axios.get('http://localhost:3000/station')
                    .then(response => {
@@ -743,6 +774,7 @@
                    })
             },
             getUser2() {
+                
                 axios.get('http://localhost:3000/st1/' + this.selected1 + '/st2/' + this.selected2 + '')
                .then(response => {
                    //this.items = [];
@@ -759,6 +791,7 @@
 
             },
             getUser3() {
+                console.log(this.selected2);
                 if (this.selected1 === this.selected2) {
                     
                     alert("Bạn chọn sai!!!");
@@ -789,18 +822,27 @@
                 .then(response=> { this.items = response.data.data; })
             },
             createTicket() {
+                
                 const config = {
                     headers: {
                         'Authorization': this.Token
                     }
                 }
+                
+                var idlst = $.map(this.lst_id, function (o) { return o["id"]; }).join(",");
+                console.log(idlst);
                 console.log("create");
                 console.log(this.id);
                 console.log(this.Token);
-                axios.get('http://localhost:3000/insertTicket/' + this.id_schedule + '/seat/' + this.id + '', config)
-                .then(response=> { this.items = response.data; })
-                alert("Đặt vé thành công!!!");
-                console.log(this.items);
+                axios.get('http://localhost:3000/insertTicket/' + this.id_schedule + '/seat/'+idlst+'', config)
+                .then(response=> { this.items = response.data; });
+                if (this.item != "")
+                {
+                    alert("Đặt vé thành công!!!");
+                    console.log(this.items);
+                    window.location = '/Client/Home/Index?token=' + this.Token;
+                }
+
             },
             checkToken() {
                 const config = {
@@ -828,7 +870,7 @@
                         window.location = '/Client/Profile_Pass/Index?token=' + this.Token;                                   
             },
             moveHome() {
-                window.location = '/Client/Home/Index?token=' + this.Token;
+                //window.location = '/Client/Home/Index?token=' + this.Token;
             },
             SignIn() {
                 console.log(this.email_Form);
@@ -858,8 +900,10 @@
             add_ID () {
                 var _this = this;
                 var newid = _this.label;
+                var idseat = _this.id;
                 if (!newid) { return; }
                 this.id_carts.push({ id: newid });
+                this.lst_id.push({ id: idseat });
                 this.deduplicate(this.id_carts);
                 console.log(this.id_carts);
             },
@@ -867,7 +911,20 @@
                 console.log(a, b);
                 return [b, a];
             },
-           
+            findIndexlst(tg)
+            {
+                var _this = this;
+                $(document).ready(function () {
+
+                    var arr = _this.lst_id;
+
+                    var itemtoRemove = tg;
+
+                    arr.splice($.inArray(itemtoRemove, arr), 1);
+
+                })
+                console.log(_this.lst_id);
+            },
             findIndex(gt)
             {
                 var _this = this;
@@ -885,17 +942,25 @@
             deduplicate(arr) {
                 let set = new Set(arr);
                 return Array.from(set);
-            },
+            },            
             button() {
                 if (this.Token === "") {
                     $("#per").hide();
                     $("#pf").hide();
+                    $("#ulpf").hide();
                 }
                 else {
                     $("#dn").hide();
                     $("#dx").hide();
+                    $("#pf").hide();
                 }
-            },           
+            },
+            exist_Email() {
+                _this.email
+            },
         },
+    });
+    $("#prof").click(function () {
+        $("#pf").click();
     });
 </script>

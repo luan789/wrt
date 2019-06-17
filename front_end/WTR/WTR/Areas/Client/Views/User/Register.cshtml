@@ -239,10 +239,18 @@
                 .then(response => {
                     this.items = response.data;
                 })
-            }
+            },
+            button() {
+                
+                    $("#per").hide();
+                    $("#pf").hide();
+                    $("#ulpf").hide();
+                    
+               
+            },
         },
         mounted() {
-
+            this.button();
         }
     })
 </script>
